@@ -3135,15 +3135,16 @@ html, body { overflow-x: hidden; scroll-behavior: smooth; }
   /* Top: Product image */
   .mt-product-image {
     width: 100%;
-    border: none;
-    border-bottom: 2px solid #e0e0e0;
+    border: 2px solid #252525;
     background: linear-gradient(135deg, #fdf6e3 0%, #f5e6c4 100%);
     padding: 0;
-    margin: 0;
+    margin: 0 auto 0.5rem;
     order: 0;
     display: block;
     line-height: 0;
-    border-radius: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    max-width: 280px;
   }
 
   .mt-product-card .mt-product-image::before { content: none; display: none; }

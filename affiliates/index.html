@@ -1819,15 +1819,18 @@
   display: inline-block;
   line-height: 0;
   background: #000;
-  border-radius: 6px 6px 0 0;
-  padding: 4px 8px 0;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  padding: 8px 14px 4px;
   text-decoration: none;
 }
 #kw-cb-badge img {
   display: block !important;
-  height: 26px !important;
+  height: 38px !important;
   width: auto !important;
   max-width: none !important;
+  filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 1px #fff);
 }
 @media (max-width: 767px) {
   #kw-cb-wrap { display: none; }

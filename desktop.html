@@ -9,6 +9,8 @@
 	<link rel="preload" as="image" href="product_images/hero-bg.webp?v=20260417b" fetchpriority="high">
 	<link rel="preload" as="image" href="logo.webp?v=20260417">
 	<link rel="preload" as="image" href="video_clips/posters/hook.webp?v=20260417">
+	<link rel="preload" as="image" href="Images/exit-popup.webp?v=20260417">
+	<link rel="preload" as="image" href="Images/notification-jar.webp?v=20260417">
 	<!-- Preconnect to third-party origins -->
 	<link rel="preconnect" href="https://cdn.trustednutraproduct.com">
 	<link rel="preconnect" href="https://iframe.videodelivery.net">
@@ -5781,7 +5783,7 @@ button:focus-visible {
                     </span>
                 </p>
             </div>
-            <img data-src="Images/notification-jar.webp?v=20260417" class="kw-notif-jar" alt="KetoFlow" width="1000" height="1000">
+            <img src="Images/notification-jar.webp?v=20260417" class="kw-notif-jar" alt="KetoFlow" width="1000" height="1000">
         </div>
         <button class="custom-close" aria-label="Close">&times;</button>
         <div class="kw-progress-bar"></div>
@@ -6284,12 +6286,14 @@ function localVideoPlay(overlay){
     /* Start sequential image loader after skeleton fade */
     setTimeout(loadDeferred,100);
   }
-  var loaded=0, needed=3;
+  var loaded=0, needed=5;
   function tick(){if(++loaded>=needed)dismiss();}
-  /* Track: hero bg, logo, first video poster */
+  /* Track: hero bg, logo, first video poster, exit popup, notification jar */
   var a=new Image(); a.onload=a.onerror=tick; a.src='product_images/hero-bg.webp?v=20260417b';
   var b=new Image(); b.onload=b.onerror=tick; b.src='logo.webp?v=20260417';
   var c=new Image(); c.onload=c.onerror=tick; c.src='video_clips/posters/hook.webp?v=20260417';
+  var e=new Image(); e.onload=e.onerror=tick; e.src='Images/exit-popup.webp?v=20260417';
+  var f=new Image(); f.onload=f.onerror=tick; f.src='Images/notification-jar.webp?v=20260417';
   /* Hard fallback: 4s max */
   setTimeout(dismiss,4000);
 })();
@@ -6316,7 +6320,7 @@ function loadDeferred(){
 <!-- ── Exit Intent Popup ── -->
 <div id="kw-exit-overlay">
   <div id="kw-exit-popup">
-    <img data-src="Images/exit-popup.webp?v=20260417" alt="Wait! Don't Leave — Get Extra 10-30% Discount If You Stay" width="1200" height="669">
+    <img src="Images/exit-popup.webp?v=20260417" alt="Wait! Don't Leave — Get Extra 10-30% Discount If You Stay" width="1200" height="669">
   </div>
 </div>
 <style>

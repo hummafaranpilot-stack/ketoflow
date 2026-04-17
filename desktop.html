@@ -2,16 +2,25 @@
 <html lang="en">
 
 <head>
-	<script src="https://cdn.trustednutraproduct.com/s.js?v=ketoflow-trustednutraproduct-com"></script>
 	<link rel="icon" type="image/png" href="favicon.png">
-	<!-- Preload above-the-fold hero images -->
+	<!-- Preload critical above-the-fold assets -->
 	<link rel="preload" as="image" href="product_images/hero-bg.webp?v=20260417b" fetchpriority="high">
+	<link rel="preload" as="image" href="logo.webp?v=20260417">
+	<link rel="preload" as="image" href="video_clips/posters/hook.webp?v=20260417">
+	<!-- Preconnect to third-party origins -->
+	<link rel="preconnect" href="https://cdn.trustednutraproduct.com">
+	<link rel="preconnect" href="https://iframe.videodelivery.net">
+	<link rel="preconnect" href="https://embed.videodelivery.net">
 <style>
 /* ── Skeleton Loader ── */
 #kw-sk{position:fixed;inset:0;z-index:10000;background:#090a0c;overflow:hidden;transition:opacity .45s ease}
 #kw-sk.kw-sk-out{opacity:0;pointer-events:none}
 .kw-sk-s{background:linear-gradient(90deg,#14141c 25%,#1e1e2c 50%,#14141c 75%);background-size:400% 100%;animation:kw-skshimmer 1.5s ease-in-out infinite;border-radius:6px}
 @keyframes kw-skshimmer{0%{background-position:100% 0}100%{background-position:-100% 0}}
+/* ── Deferred Image Loading ── */
+img[data-src]{opacity:0}
+img.kw-loaded{opacity:1;transition:opacity .3s ease}
+img{height:auto;max-width:100%}
 </style>
 
 
@@ -3362,7 +3371,7 @@ html, body { overflow-x: hidden; scroll-behavior: smooth; }
 		<img src="product_images/hero-bg.webp?v=20260417b" alt="" class="hero-bg-img hero-bg-desktop" fetchpriority="high" width="2752" height="1377">
 
 		<div class="hero-logo">
-			<a href="index.html"><img src="logo.webp?v=20260417" alt="KetoFlow"></a>
+			<a href="index.html"><img src="logo.webp?v=20260417" alt="KetoFlow" width="298" height="400"></a>
 		</div>
 
 		<button class="hero-nav-toggle" aria-label="Menu" onclick="this.classList.toggle('open');document.querySelector('.hero-nav').classList.toggle('open');">
@@ -3391,10 +3400,10 @@ html, body { overflow-x: hidden; scroll-behavior: smooth; }
 
 		<div class="thumbs-panel">
 			<div class="thumbs-stack">
-				<img src="product_images/gallery/gallery_1.webp?v=20260417" alt="" class="thumb">
-				<img src="product_images/gallery/gallery_2.webp?v=20260417" alt="" class="thumb">
-				<img src="product_images/gallery/gallery_3.webp?v=20260417" alt="" class="thumb">
-				<img src="product_images/gallery/gallery_6.webp?v=20260417" alt="" class="thumb">
+				<img src="product_images/gallery/gallery_1.webp?v=20260417" alt="" class="thumb" width="1200" height="669">
+				<img src="product_images/gallery/gallery_2.webp?v=20260417" alt="" class="thumb" width="1200" height="669">
+				<img src="product_images/gallery/gallery_3.webp?v=20260417" alt="" class="thumb" width="1200" height="669">
+				<img src="product_images/gallery/gallery_6.webp?v=20260417" alt="" class="thumb" width="1200" height="669">
 			</div>
 		</div>
 
@@ -3421,7 +3430,7 @@ html, body { overflow-x: hidden; scroll-behavior: smooth; }
 				<li>Increase energy and stamina</li>
 			</ul>
 			<div class="pxp-social-proof">
-				<span class="pxp-sp-group"><img src="Images/socials.webp?v=20260417" alt="Happy Customers" class="pxp-sp-faces"><span class="pxp-sp-text"><strong>+2K</strong> Happy Customers</span></span>
+				<span class="pxp-sp-group"><img src="Images/socials.webp?v=20260417" alt="Happy Customers" class="pxp-sp-faces" width="97" height="32"><span class="pxp-sp-text"><strong>+2K</strong> Happy Customers</span></span>
 				<span class="pxp-sp-stock"><span class="pxp-sp-dot"></span> In stock and ready to ship</span>
 			</div>
 		</div>
@@ -3438,32 +3447,32 @@ html, body { overflow-x: hidden; scroll-behavior: smooth; }
 <!-- As Featured In — auto-scrolling press bar -->
 <div class="press-bar" aria-label="As featured in">
     <div class="press-track">
-        <div class="press-item"><img src="Images/press/us-weekly.png" alt="US Weekly"></div>
-        <div class="press-item"><img src="Images/press/forbes-health.png" alt="Forbes Health"></div>
-        <div class="press-item"><img src="Images/press/usa-today.png" alt="USA Today"></div>
-        <div class="press-item"><img src="Images/press/oprah.png" alt="The Oprah Magazine"></div>
-        <div class="press-item"><img src="Images/press/good-housekeeping.png" alt="Good Housekeeping"></div>
-        <div class="press-item"><img src="Images/press/nbc.png" alt="NBC"></div>
-        <div class="press-item"><img src="Images/press/the-doctors.png" alt="The Doctors"></div>
+        <div class="press-item"><img src="Images/press/us-weekly.png" alt="US Weekly" width="260" height="155"></div>
+        <div class="press-item"><img src="Images/press/forbes-health.png" alt="Forbes Health" width="260" height="155"></div>
+        <div class="press-item"><img src="Images/press/usa-today.png" alt="USA Today" width="260" height="155"></div>
+        <div class="press-item"><img src="Images/press/oprah.png" alt="The Oprah Magazine" width="260" height="155"></div>
+        <div class="press-item"><img src="Images/press/good-housekeeping.png" alt="Good Housekeeping" width="260" height="155"></div>
+        <div class="press-item"><img src="Images/press/nbc.png" alt="NBC" width="260" height="155"></div>
+        <div class="press-item"><img src="Images/press/the-doctors.png" alt="The Doctors" width="260" height="155"></div>
         <!-- duplicate set for seamless infinite loop -->
-        <div class="press-item"><img src="Images/press/us-weekly.png" alt=""></div>
-        <div class="press-item"><img src="Images/press/forbes-health.png" alt=""></div>
-        <div class="press-item"><img src="Images/press/usa-today.png" alt=""></div>
-        <div class="press-item"><img src="Images/press/oprah.png" alt=""></div>
-        <div class="press-item"><img src="Images/press/good-housekeeping.png" alt=""></div>
-        <div class="press-item"><img src="Images/press/nbc.png" alt=""></div>
-        <div class="press-item"><img src="Images/press/the-doctors.png" alt=""></div>
+        <div class="press-item"><img src="Images/press/us-weekly.png" alt="" width="260" height="155"></div>
+        <div class="press-item"><img src="Images/press/forbes-health.png" alt="" width="260" height="155"></div>
+        <div class="press-item"><img src="Images/press/usa-today.png" alt="" width="260" height="155"></div>
+        <div class="press-item"><img src="Images/press/oprah.png" alt="" width="260" height="155"></div>
+        <div class="press-item"><img src="Images/press/good-housekeeping.png" alt="" width="260" height="155"></div>
+        <div class="press-item"><img src="Images/press/nbc.png" alt="" width="260" height="155"></div>
+        <div class="press-item"><img src="Images/press/the-doctors.png" alt="" width="260" height="155"></div>
     </div>
 </div>
 
 <!-- Stock banner #1: below press bar -->
-<div class="kw-stock-banner"><img src="Images/stock-running-low.webp?v=20260417" alt="Stock Running Low — Order Now"></div>
+<div class="kw-stock-banner"><img src="Images/stock-running-low.webp?v=20260417" alt="Stock Running Low — Order Now" width="1200" height="669"></div>
 
 <section class="kw-video-section">
 <div class="mv-title"><h3>The <span class="mv-highlight">Real Reason</span> You Can't Lose Weight</h3></div>
 <div class="mv-player" data-video-id="kw-hook" data-cf-id="ca6b6357e485658a6c4c68e3d0da30df">
     <span class="mv-badge">WATCH THIS FIRST</span>
-    <img class="mv-poster" src="video_clips/posters/hook.webp?v=20260417" alt="">
+    <img class="mv-poster" src="video_clips/posters/hook.webp?v=20260417" alt="" width="960" height="540">
     <div class="mv-play-overlay" onclick="ytFacadePlay(this)" onmouseenter="ytFacadeHover(this)">
         <div class="mv-play-btn">
             <svg class="mv-play-icon" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="6,3 20,12 6,21"/></svg>
@@ -3478,37 +3487,37 @@ html, body { overflow-x: hidden; scroll-behavior: smooth; }
     <div class="guarantee-track">
         <!-- Set 1 -->
         <div class="guarantee-item"><img src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
-        <div class="guarantee-item"><img src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
-        <div class="guarantee-item"><img src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
-        <div class="guarantee-item"><img src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
-        <div class="guarantee-item"><img src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
-        <div class="guarantee-item"><img src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
-        <div class="guarantee-item"><img src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
-        <div class="guarantee-item"><img src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
+        <div class="guarantee-item"><img data-src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
+        <div class="guarantee-item"><img data-src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
+        <div class="guarantee-item"><img data-src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
+        <div class="guarantee-item"><img data-src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
+        <div class="guarantee-item"><img data-src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
+        <div class="guarantee-item"><img data-src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
+        <div class="guarantee-item"><img data-src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
         <!-- Set 2 (identical duplicate for seamless loop) -->
-        <div class="guarantee-item"><img src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
-        <div class="guarantee-item"><img src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
-        <div class="guarantee-item"><img src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
-        <div class="guarantee-item"><img src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
-        <div class="guarantee-item"><img src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
-        <div class="guarantee-item"><img src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
-        <div class="guarantee-item"><img src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
-        <div class="guarantee-item"><img src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
+        <div class="guarantee-item"><img data-src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
+        <div class="guarantee-item"><img data-src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
+        <div class="guarantee-item"><img data-src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
+        <div class="guarantee-item"><img data-src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
+        <div class="guarantee-item"><img data-src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
+        <div class="guarantee-item"><img data-src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
+        <div class="guarantee-item"><img data-src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
+        <div class="guarantee-item"><img data-src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
     </div>
 </div>
 
 	<section class="kw-power-section" id="moneyback">
-		<img src="Images/guarantee-section/badge-60day.webp?v=20260417" alt="60-Day Money Back Guarantee" class="kw-power-badge-mobile">
+		<img data-src="Images/guarantee-section/badge-60day.webp?v=20260417" alt="60-Day Money Back Guarantee" class="kw-power-badge-mobile" width="666" height="1023">
 		<div class="kw-power-inner">
 			<div class="kw-power-content">
 				<h2>Love It or It's Free: <br><span class="kw-h2-line2">Our 60-Day Money Back Guarantee</span></h2>
 				<p class="lead">At Trusted Nutra Products, we are so confident in the effectiveness of KetoFlow that we are willing to put the entire risk on us.</p>
-				<img src="Images/guarantee-section/product-jar-bottle.webp?v=20260417" alt="KetoFlow jar and bottle" class="kw-power-product-mobile">
+				<img data-src="Images/guarantee-section/product-jar-bottle.webp?v=20260417" alt="KetoFlow jar and bottle" class="kw-power-product-mobile" width="1000" height="1000">
 				<ul class="kw-power-features">
-					<li><img src="Images/guarantee-section/icon-bolt.webp?v=20260417" alt="">Advanced Energy Boost</li>
-					<li><img src="Images/guarantee-section/icon-drop.webp?v=20260417" alt="">Pure Hydration</li>
-					<li><img src="Images/guarantee-section/icon-flame.webp?v=20260417" alt="">Ketone Body Support</li>
-					<li><img src="Images/guarantee-section/icon-x.webp?v=20260417" alt="">Zero Sugar, Zero Crash</li>
+					<li><img data-src="Images/guarantee-section/icon-bolt.webp?v=20260417" alt="" width="379" height="561">Advanced Energy Boost</li>
+					<li><img data-src="Images/guarantee-section/icon-drop.webp?v=20260417" alt="" width="384" height="561">Pure Hydration</li>
+					<li><img data-src="Images/guarantee-section/icon-flame.webp?v=20260417" alt="" width="448" height="561">Ketone Body Support</li>
+					<li><img data-src="Images/guarantee-section/icon-x.webp?v=20260417" alt="" width="542" height="561">Zero Sugar, Zero Crash</li>
 				</ul>
 				<a href="#buynow" class="kw-power-cta" onclick="scrollToCards();return false;">Get Your Starter Kit Now <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg></a>
 				<div class="kw-power-disclaimer">
@@ -3517,20 +3526,20 @@ html, body { overflow-x: hidden; scroll-behavior: smooth; }
 				</div>
 			</div>
 			<div class="kw-power-image">
-				<img src="Images/guarantee-section/hero-product-guarantee.webp?v=20260417" alt="KetoFlow jar and bottle with 60-Day Money-Back Guarantee badge">
+				<img data-src="Images/guarantee-section/hero-product-guarantee.webp?v=20260417" alt="KetoFlow jar and bottle with 60-Day Money-Back Guarantee badge" width="1000" height="1000">
 			</div>
 		</div>
 
 	</section>
 
 <!-- Stock banner #2: after money-back guarantee -->
-<div class="kw-stock-banner"><img src="Images/stock-running-low.webp?v=20260417" alt="Stock Running Low — Order Now"></div>
+<div class="kw-stock-banner"><img data-src="Images/stock-running-low.webp?v=20260417" alt="Stock Running Low — Order Now" width="1200" height="669"></div>
 
 <section class="kw-video-section">
 <div class="mv-title"><h3>What's <span class="mv-highlight">Really Causing</span> Your Stubborn Belly Fat</h3></div>
 <div class="mv-player" data-video-id="kw-fat" data-cf-id="420fe9c069dc35bb32a15e679be3c62b">
     <span class="mv-badge">FAT LOSS TRUTH</span>
-    <img class="mv-poster" src="video_clips/posters/clip_3.webp?v=20260417" alt="">
+    <img class="mv-poster" data-src="video_clips/posters/clip_3.webp?v=20260417" alt="" width="960" height="540">
     <div class="mv-play-overlay" onclick="ytFacadePlay(this)" onmouseenter="ytFacadeHover(this)">
         <div class="mv-play-btn">
             <svg class="mv-play-icon" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="6,3 20,12 6,21"/></svg>
@@ -3544,22 +3553,22 @@ html, body { overflow-x: hidden; scroll-behavior: smooth; }
 		<div class="container">
 			<div class="row py-3 py-lg-5 justify-content-center mx-auto">
 				<div class="col-6 col-md-3">
-					<img src="https://cdn.truegcloud.com/ovunashop/img/Layer_1_sz.png" class="img-fluid d-block mx-auto align-middle" alt="Secure Checkout">
+					<img data-src="https://cdn.truegcloud.com/ovunashop/img/Layer_1_sz.png" class="img-fluid d-block mx-auto align-middle" alt="Secure Checkout">
 					<h4 class="text-center mt-2">Free US Shipping <br class="d-none d-lg-block">To Your Door</h4>
 					<p class="text-center my-1">Lightning fast. <br class="d-none d-lg-block">On orders of Premium Package.</p>
 				</div>
 				<div class="col-6 col-md-3">
-					<img src="https://cdn.truegcloud.com/ovunashop/img/Layer_1.png" class="img-fluid d-block mx-auto align-middle" alt="Accepted Payment Methods">
+					<img data-src="https://cdn.truegcloud.com/ovunashop/img/Layer_1.png" class="img-fluid d-block mx-auto align-middle" alt="Accepted Payment Methods">
 					<h4 class="text-center mt-2">60-Day, Empty <br class="d-none d-lg-block">Bottle Guarantee</h4>
 					<p class="text-center my-1">Try KetoFlow™ for 60 days. Use the entire bottle. If you don't love it, let us know and we'll refund you.</p>
 				</div>
 				<div class="col-6 col-md-3">
-					<img src="https://cdn.truegcloud.com/ovunashop/img/Layer_1_s.png" class="img-fluid d-block mx-auto align-middle" alt="Secure Payment Verified">
+					<img data-src="https://cdn.truegcloud.com/ovunashop/img/Layer_1_s.png" class="img-fluid d-block mx-auto align-middle" alt="Secure Payment Verified">
 					<h4 class="text-center mt-2">Available By <br class="d-none d-lg-block">Email Support</h4>
 					<p class="text-center my-1">Should you need it, <br class="d-none d-lg-block">our support team is ready to help you.</p>
 				</div>
 				<div class="col-6 col-md-3">
-					<img src="https://cdn.truegcloud.com/ovunashop/img/Layer_1_ta.png" class="img-fluid d-block mx-auto align-middle" alt="SSL Secured">
+					<img data-src="https://cdn.truegcloud.com/ovunashop/img/Layer_1_ta.png" class="img-fluid d-block mx-auto align-middle" alt="SSL Secured">
 					<h4 class="text-center mt-2">Privacy <br class="d-none d-lg-block">Guaranteed</h4>
 					<p class="text-center my-1 mb-3">Your information is safe, secure, and never shared <br class="d-none d-lg-block">or sold.</p>
 				</div>
@@ -3578,7 +3587,7 @@ html, body { overflow-x: hidden; scroll-behavior: smooth; }
 <div class="mv-title"><h3>Real <span class="mv-highlight">Success Story</span> Before The Wedding</h3></div>
 <div class="mv-player" data-video-id="kw-bride" data-cf-id="e0ef7c7e6aac3ef7b6192bb8e7ded4f8">
     <span class="mv-badge">SUCCESS STORY</span>
-    <img class="mv-poster" src="video_clips/posters/clip_2.webp?v=20260417" alt="">
+    <img class="mv-poster" data-src="video_clips/posters/clip_2.webp?v=20260417" alt="" width="960" height="540">
     <div class="mv-play-overlay" onclick="ytFacadePlay(this)" onmouseenter="ytFacadeHover(this)">
         <div class="mv-play-btn">
             <svg class="mv-play-icon" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="6,3 20,12 6,21"/></svg>
@@ -3598,7 +3607,7 @@ html, body { overflow-x: hidden; scroll-behavior: smooth; }
         <div class="kw-howto-card">
             <div class="kw-howto-media">
                 <span class="kw-howto-step">1</span>
-                <img src="Images/howto/step-1-open-package.webp?v=20260417" alt="Open Your Package">
+                <img data-src="Images/howto/step-1-open-package.webp?v=20260417" alt="Open Your Package" width="896" height="1200">
             </div>
             <div class="kw-howto-body">
                 <div class="kw-howto-title">
@@ -3611,7 +3620,7 @@ html, body { overflow-x: hidden; scroll-behavior: smooth; }
         <div class="kw-howto-card">
             <div class="kw-howto-media">
                 <span class="kw-howto-step">2</span>
-                <img src="Images/howto/step-2-scoop.webp?v=20260417" alt="Scoop The Powder">
+                <img data-src="Images/howto/step-2-scoop.webp?v=20260417" alt="Scoop The Powder" width="896" height="1200">
             </div>
             <div class="kw-howto-body">
                 <div class="kw-howto-title">
@@ -3624,7 +3633,7 @@ html, body { overflow-x: hidden; scroll-behavior: smooth; }
         <div class="kw-howto-card">
             <div class="kw-howto-media">
                 <span class="kw-howto-step">3</span>
-                <img src="Images/howto/step-3-add-water.webp?v=20260417" alt="Add Water">
+                <img data-src="Images/howto/step-3-add-water.webp?v=20260417" alt="Add Water" width="896" height="1200">
             </div>
             <div class="kw-howto-body">
                 <div class="kw-howto-title">
@@ -3637,7 +3646,7 @@ html, body { overflow-x: hidden; scroll-behavior: smooth; }
         <div class="kw-howto-card">
             <div class="kw-howto-media">
                 <span class="kw-howto-step">4</span>
-                <img src="Images/howto/step-4-shake-drink.webp?v=20260417" alt="Shake & Drink">
+                <img data-src="Images/howto/step-4-shake-drink.webp?v=20260417" alt="Shake & Drink" width="896" height="1200">
             </div>
             <div class="kw-howto-body">
                 <div class="kw-howto-title">
@@ -3661,7 +3670,7 @@ html, body { overflow-x: hidden; scroll-behavior: smooth; }
 			<div class="row">
 
 				<div class="col-12 col-lg-8 mx-auto py-5">
-					<img src="https://cdn.truegcloud.com/ovunashop/img/Simple-promise---As-Seen-On-Bar.png" class="img-fluid" alt="As Seen On">
+					<img data-src="https://cdn.truegcloud.com/ovunashop/img/Simple-promise---As-Seen-On-Bar.png" class="img-fluid" alt="As Seen On">
 				</div>
 			</div>
 
@@ -3679,11 +3688,11 @@ html, body { overflow-x: hidden; scroll-behavior: smooth; }
                 <h2>KetoFlow vs <br><span class="accent">Regular Keto Pills</span></h2>
             </div>
             <div class="kw-compare-product kw-compare-product--featured">
-                <img src="Images/comparison/ketowater.webp?v=20260417" alt="KetoFlow">
+                <img data-src="Images/comparison/ketowater.webp?v=20260417" alt="KetoFlow" width="1000" height="1000">
                 <div class="label">KetoFlow&trade;</div>
             </div>
             <div class="kw-compare-product kw-compare-product--regular">
-                <img src="Images/comparison/competitor.webp?v=20260417" alt="Regular Keto Pills">
+                <img data-src="Images/comparison/competitor.webp?v=20260417" alt="Regular Keto Pills" width="1690" height="1309">
                 <div class="label">Regular Keto Pills</div>
             </div>
 
@@ -3740,16 +3749,16 @@ html, body { overflow-x: hidden; scroll-behavior: smooth; }
         <div class="kw-rs">
             <div class="kw-rs__col1">
                 <div class="kw-rs-num" id="kw-rs-num">4.7</div>
-                <img src="Images/reviews/star-rating.svg" alt="4.7 stars">
+                <img data-src="Images/reviews/star-rating.svg" alt="4.7 stars">
                 <p class="kw-rs-total"><span id="kw-rs-total">1,888</span> reviews</p>
             </div>
             <div class="kw-rs-divider"></div>
             <div class="kw-rs-table">
-                <div class="kw-rs-row"><span class="label">5<img src="Images/reviews/single-star.svg" alt=""></span><div class="kw-rs-bar-track"><div class="kw-rs-bar-fill" data-stars="5" style="width:90%"></div></div><span class="count" data-count="5">1,134</span></div>
-                <div class="kw-rs-row"><span class="label">4<img src="Images/reviews/single-star.svg" alt=""></span><div class="kw-rs-bar-track"><div class="kw-rs-bar-fill" data-stars="4" style="width:72%"></div></div><span class="count" data-count="4">736</span></div>
-                <div class="kw-rs-row"><span class="label">3<img src="Images/reviews/single-star.svg" alt=""></span><div class="kw-rs-bar-track"><div class="kw-rs-bar-fill" data-stars="3" style="width:5%"></div></div><span class="count" data-count="3">14</span></div>
-                <div class="kw-rs-row"><span class="label">2<img src="Images/reviews/single-star.svg" alt=""></span><div class="kw-rs-bar-track"><div class="kw-rs-bar-fill" data-stars="2" style="width:2%"></div></div><span class="count" data-count="2">4</span></div>
-                <div class="kw-rs-row"><span class="label">1<img src="Images/reviews/single-star.svg" alt=""></span><div class="kw-rs-bar-track"><div class="kw-rs-bar-fill" data-stars="1" style="width:0%"></div></div><span class="count" data-count="1">0</span></div>
+                <div class="kw-rs-row"><span class="label">5<img data-src="Images/reviews/single-star.svg" alt=""></span><div class="kw-rs-bar-track"><div class="kw-rs-bar-fill" data-stars="5" style="width:90%"></div></div><span class="count" data-count="5">1,134</span></div>
+                <div class="kw-rs-row"><span class="label">4<img data-src="Images/reviews/single-star.svg" alt=""></span><div class="kw-rs-bar-track"><div class="kw-rs-bar-fill" data-stars="4" style="width:72%"></div></div><span class="count" data-count="4">736</span></div>
+                <div class="kw-rs-row"><span class="label">3<img data-src="Images/reviews/single-star.svg" alt=""></span><div class="kw-rs-bar-track"><div class="kw-rs-bar-fill" data-stars="3" style="width:5%"></div></div><span class="count" data-count="3">14</span></div>
+                <div class="kw-rs-row"><span class="label">2<img data-src="Images/reviews/single-star.svg" alt=""></span><div class="kw-rs-bar-track"><div class="kw-rs-bar-fill" data-stars="2" style="width:2%"></div></div><span class="count" data-count="2">4</span></div>
+                <div class="kw-rs-row"><span class="label">1<img data-src="Images/reviews/single-star.svg" alt=""></span><div class="kw-rs-bar-track"><div class="kw-rs-bar-fill" data-stars="1" style="width:0%"></div></div><span class="count" data-count="1">0</span></div>
             </div>
             <div class="kw-rs-divider"></div>
             <div class="kw-rs__col-recommend">
@@ -3777,24 +3786,24 @@ html, body { overflow-x: hidden; scroll-behavior: smooth; }
                 <div class="kw-review-wrap">
                     <div class="kw-rev-author">
                         <div class="kw-rev-author__top">
-                            <img src="Images/reviews/emily-j.webp?v=20260417" alt="" class="kw-rev-author__img">
+                            <img data-src="Images/reviews/emily-j.webp?v=20260417" alt="" class="kw-rev-author__img" width="120" height="120">
                             <div>
                                 <span class="kw-rev-author__name">Emily J.</span>
-                                <span class="kw-rev-author__verified"><img src="Images/reviews/verify.svg" alt="">Verified customer</span>
+                                <span class="kw-rev-author__verified"><img data-src="Images/reviews/verify.svg" alt="">Verified customer</span>
                             </div>
                             <div class="kw-rev-score--mobile">
-                                <span class="kw-stars" data-stars="5"><img src="Images/reviews/tp-star.svg" alt=""><img src="Images/reviews/tp-star.svg" alt=""><img src="Images/reviews/tp-star.svg" alt=""><img src="Images/reviews/tp-star.svg" alt=""><img src="Images/reviews/tp-star.svg" alt=""></span>
+                                <span class="kw-stars" data-stars="5"><img data-src="Images/reviews/tp-star.svg" alt=""><img data-src="Images/reviews/tp-star.svg" alt=""><img data-src="Images/reviews/tp-star.svg" alt=""><img data-src="Images/reviews/tp-star.svg" alt=""><img data-src="Images/reviews/tp-star.svg" alt=""></span>
                                 <p class="date">3 days ago</p>
                             </div>
                         </div>
                         <div class="kw-rev-author__recommend">
-                            <img src="Images/reviews/thumb-up.svg" alt="">
+                            <img data-src="Images/reviews/thumb-up.svg" alt="">
                             <span>I recommend this product</span>
                         </div>
                     </div>
                     <div class="kw-rev-content">
                         <div class="kw-rev-score--desktop">
-                            <span class="kw-stars" data-stars="5"><img src="Images/reviews/tp-star.svg" alt=""><img src="Images/reviews/tp-star.svg" alt=""><img src="Images/reviews/tp-star.svg" alt=""><img src="Images/reviews/tp-star.svg" alt=""><img src="Images/reviews/tp-star.svg" alt=""></span>
+                            <span class="kw-stars" data-stars="5"><img data-src="Images/reviews/tp-star.svg" alt=""><img data-src="Images/reviews/tp-star.svg" alt=""><img data-src="Images/reviews/tp-star.svg" alt=""><img data-src="Images/reviews/tp-star.svg" alt=""><img data-src="Images/reviews/tp-star.svg" alt=""></span>
                             <span class="date">3 days ago</span>
                         </div>
                         <h3 class="kw-rev-title">Just perfect!!</h3>
@@ -3802,11 +3811,11 @@ html, body { overflow-x: hidden; scroll-behavior: smooth; }
                         <div class="kw-rev-likes">
                             <span class="label">Was this review helpful?</span>
                             <div class="kw-rev-likes-thumb">
-                                <button class="kw-rev-btn kw-rev-btn--like" aria-label="Helpful" onclick="kwVote(this,1)"><img src="Images/reviews/thumb-up.svg" alt=""></button>
+                                <button class="kw-rev-btn kw-rev-btn--like" aria-label="Helpful" onclick="kwVote(this,1)"><img data-src="Images/reviews/thumb-up.svg" alt=""></button>
                                 <span class="kw-rev-counter">22</span>
                             </div>
                             <div class="kw-rev-likes-thumb">
-                                <button class="kw-rev-btn kw-rev-btn--dislike" aria-label="Not helpful" onclick="kwVote(this,-1)"><img src="Images/reviews/thumb-up.svg" alt=""></button>
+                                <button class="kw-rev-btn kw-rev-btn--dislike" aria-label="Not helpful" onclick="kwVote(this,-1)"><img data-src="Images/reviews/thumb-up.svg" alt=""></button>
                                 <span class="kw-rev-counter">1</span>
                             </div>
                         </div>
@@ -3818,24 +3827,24 @@ html, body { overflow-x: hidden; scroll-behavior: smooth; }
                 <div class="kw-review-wrap">
                     <div class="kw-rev-author">
                         <div class="kw-rev-author__top">
-                            <img src="Images/reviews/michael-b.webp?v=20260417" alt="" class="kw-rev-author__img">
+                            <img data-src="Images/reviews/michael-b.webp?v=20260417" alt="" class="kw-rev-author__img" width="120" height="120">
                             <div>
                                 <span class="kw-rev-author__name">David S.</span>
-                                <span class="kw-rev-author__verified"><img src="Images/reviews/verify.svg" alt="">Verified customer</span>
+                                <span class="kw-rev-author__verified"><img data-src="Images/reviews/verify.svg" alt="">Verified customer</span>
                             </div>
                             <div class="kw-rev-score--mobile">
-                                <span class="kw-stars" data-stars="4"><img src="Images/reviews/tp-star.svg" alt=""><img src="Images/reviews/tp-star.svg" alt=""><img src="Images/reviews/tp-star.svg" alt=""><img src="Images/reviews/tp-star.svg" alt=""><img src="Images/reviews/tp-star-empty.svg" alt=""></span>
+                                <span class="kw-stars" data-stars="4"><img data-src="Images/reviews/tp-star.svg" alt=""><img data-src="Images/reviews/tp-star.svg" alt=""><img data-src="Images/reviews/tp-star.svg" alt=""><img data-src="Images/reviews/tp-star.svg" alt=""><img data-src="Images/reviews/tp-star-empty.svg" alt=""></span>
                                 <p class="date">4 days ago</p>
                             </div>
                         </div>
                         <div class="kw-rev-author__recommend">
-                            <img src="Images/reviews/thumb-up.svg" alt="">
+                            <img data-src="Images/reviews/thumb-up.svg" alt="">
                             <span>I recommend this product</span>
                         </div>
                     </div>
                     <div class="kw-rev-content">
                         <div class="kw-rev-score--desktop">
-                            <span class="kw-stars" data-stars="4"><img src="Images/reviews/tp-star.svg" alt=""><img src="Images/reviews/tp-star.svg" alt=""><img src="Images/reviews/tp-star.svg" alt=""><img src="Images/reviews/tp-star.svg" alt=""><img src="Images/reviews/tp-star-empty.svg" alt=""></span>
+                            <span class="kw-stars" data-stars="4"><img data-src="Images/reviews/tp-star.svg" alt=""><img data-src="Images/reviews/tp-star.svg" alt=""><img data-src="Images/reviews/tp-star.svg" alt=""><img data-src="Images/reviews/tp-star.svg" alt=""><img data-src="Images/reviews/tp-star-empty.svg" alt=""></span>
                             <span class="date">4 days ago</span>
                         </div>
                         <h3 class="kw-rev-title">Best keto supplement I've tried</h3>
@@ -3843,11 +3852,11 @@ html, body { overflow-x: hidden; scroll-behavior: smooth; }
                         <div class="kw-rev-likes">
                             <span class="label">Was this review helpful?</span>
                             <div class="kw-rev-likes-thumb">
-                                <button class="kw-rev-btn kw-rev-btn--like" aria-label="Helpful" onclick="kwVote(this,1)"><img src="Images/reviews/thumb-up.svg" alt=""></button>
+                                <button class="kw-rev-btn kw-rev-btn--like" aria-label="Helpful" onclick="kwVote(this,1)"><img data-src="Images/reviews/thumb-up.svg" alt=""></button>
                                 <span class="kw-rev-counter">14</span>
                             </div>
                             <div class="kw-rev-likes-thumb">
-                                <button class="kw-rev-btn kw-rev-btn--dislike" aria-label="Not helpful" onclick="kwVote(this,-1)"><img src="Images/reviews/thumb-up.svg" alt=""></button>
+                                <button class="kw-rev-btn kw-rev-btn--dislike" aria-label="Not helpful" onclick="kwVote(this,-1)"><img data-src="Images/reviews/thumb-up.svg" alt=""></button>
                                 <span class="kw-rev-counter">0</span>
                             </div>
                         </div>
@@ -3859,24 +3868,24 @@ html, body { overflow-x: hidden; scroll-behavior: smooth; }
                 <div class="kw-review-wrap">
                     <div class="kw-rev-author">
                         <div class="kw-rev-author__top">
-                            <img src="Images/reviews/jamie-v.webp?v=20260417" alt="" class="kw-rev-author__img">
+                            <img data-src="Images/reviews/jamie-v.webp?v=20260417" alt="" class="kw-rev-author__img" width="120" height="120">
                             <div>
                                 <span class="kw-rev-author__name">Michael B.</span>
-                                <span class="kw-rev-author__verified"><img src="Images/reviews/verify.svg" alt="">Verified customer</span>
+                                <span class="kw-rev-author__verified"><img data-src="Images/reviews/verify.svg" alt="">Verified customer</span>
                             </div>
                             <div class="kw-rev-score--mobile">
-                                <span class="kw-stars" data-stars="5"><img src="Images/reviews/tp-star.svg" alt=""><img src="Images/reviews/tp-star.svg" alt=""><img src="Images/reviews/tp-star.svg" alt=""><img src="Images/reviews/tp-star.svg" alt=""><img src="Images/reviews/tp-star.svg" alt=""></span>
+                                <span class="kw-stars" data-stars="5"><img data-src="Images/reviews/tp-star.svg" alt=""><img data-src="Images/reviews/tp-star.svg" alt=""><img data-src="Images/reviews/tp-star.svg" alt=""><img data-src="Images/reviews/tp-star.svg" alt=""><img data-src="Images/reviews/tp-star.svg" alt=""></span>
                                 <p class="date">6 days ago</p>
                             </div>
                         </div>
                         <div class="kw-rev-author__recommend">
-                            <img src="Images/reviews/thumb-up.svg" alt="">
+                            <img data-src="Images/reviews/thumb-up.svg" alt="">
                             <span>I recommend this product</span>
                         </div>
                     </div>
                     <div class="kw-rev-content">
                         <div class="kw-rev-score--desktop">
-                            <span class="kw-stars" data-stars="5"><img src="Images/reviews/tp-star.svg" alt=""><img src="Images/reviews/tp-star.svg" alt=""><img src="Images/reviews/tp-star.svg" alt=""><img src="Images/reviews/tp-star.svg" alt=""><img src="Images/reviews/tp-star.svg" alt=""></span>
+                            <span class="kw-stars" data-stars="5"><img data-src="Images/reviews/tp-star.svg" alt=""><img data-src="Images/reviews/tp-star.svg" alt=""><img data-src="Images/reviews/tp-star.svg" alt=""><img data-src="Images/reviews/tp-star.svg" alt=""><img data-src="Images/reviews/tp-star.svg" alt=""></span>
                             <span class="date">6 days ago</span>
                         </div>
                         <h3 class="kw-rev-title">Wonderful results</h3>
@@ -3884,11 +3893,11 @@ html, body { overflow-x: hidden; scroll-behavior: smooth; }
                         <div class="kw-rev-likes">
                             <span class="label">Was this review helpful?</span>
                             <div class="kw-rev-likes-thumb">
-                                <button class="kw-rev-btn kw-rev-btn--like" aria-label="Helpful" onclick="kwVote(this,1)"><img src="Images/reviews/thumb-up.svg" alt=""></button>
+                                <button class="kw-rev-btn kw-rev-btn--like" aria-label="Helpful" onclick="kwVote(this,1)"><img data-src="Images/reviews/thumb-up.svg" alt=""></button>
                                 <span class="kw-rev-counter">9</span>
                             </div>
                             <div class="kw-rev-likes-thumb">
-                                <button class="kw-rev-btn kw-rev-btn--dislike" aria-label="Not helpful" onclick="kwVote(this,-1)"><img src="Images/reviews/thumb-up.svg" alt=""></button>
+                                <button class="kw-rev-btn kw-rev-btn--dislike" aria-label="Not helpful" onclick="kwVote(this,-1)"><img data-src="Images/reviews/thumb-up.svg" alt=""></button>
                                 <span class="kw-rev-counter">0</span>
                             </div>
                         </div>
@@ -4023,7 +4032,7 @@ html, body { overflow-x: hidden; scroll-behavior: smooth; }
     <div class="kw-testimonials-grid">
         <div class="mv-player" data-video-id="kw-linda" data-cf-id="1be61dd591bd2db2583665f80e07f778">
             <span class="mv-badge">LINDA</span>
-            <img class="mv-poster" src="video_clips/posters/testimonial_linda.webp?v=20260417" alt="">
+            <img class="mv-poster" data-src="video_clips/posters/testimonial_linda.webp?v=20260417" alt="" width="960" height="540">
             <div class="mv-play-overlay" onclick="ytFacadePlay(this)" onmouseenter="ytFacadeHover(this)">
                 <div class="mv-play-btn">
                     <svg class="mv-play-icon" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="6,3 20,12 6,21"/></svg>
@@ -4033,7 +4042,7 @@ html, body { overflow-x: hidden; scroll-behavior: smooth; }
 
         <div class="mv-player" data-video-id="kw-patricia" data-cf-id="f12deecc37f3a593ab456db1f77f312b">
             <span class="mv-badge">PATRICIA</span>
-            <img class="mv-poster" src="video_clips/posters/testimonial_patricia.webp?v=20260417" alt="">
+            <img class="mv-poster" data-src="video_clips/posters/testimonial_patricia.webp?v=20260417" alt="" width="960" height="540">
             <div class="mv-play-overlay" onclick="ytFacadePlay(this)" onmouseenter="ytFacadeHover(this)">
                 <div class="mv-play-btn">
                     <svg class="mv-play-icon" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="6,3 20,12 6,21"/></svg>
@@ -4043,7 +4052,7 @@ html, body { overflow-x: hidden; scroll-behavior: smooth; }
 
         <div class="mv-player" data-video-id="kw-sean" data-cf-id="8ac8621ca34b83bcd02a307d29768af0">
             <span class="mv-badge">SEAN</span>
-            <img class="mv-poster" src="video_clips/posters/testimonial_sean.webp?v=20260417" alt="">
+            <img class="mv-poster" data-src="video_clips/posters/testimonial_sean.webp?v=20260417" alt="" width="960" height="540">
             <div class="mv-play-overlay" onclick="ytFacadePlay(this)" onmouseenter="ytFacadeHover(this)">
                 <div class="mv-play-btn">
                     <svg class="mv-play-icon" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="6,3 20,12 6,21"/></svg>
@@ -4054,12 +4063,12 @@ html, body { overflow-x: hidden; scroll-behavior: smooth; }
 </section>
 
 <!-- Stock banner #3: after reviews -->
-<div class="kw-stock-banner"><img src="Images/stock-running-low.webp?v=20260417" alt="Stock Running Low — Order Now"></div>
+<div class="kw-stock-banner"><img data-src="Images/stock-running-low.webp?v=20260417" alt="Stock Running Low — Order Now" width="1200" height="669"></div>
 
 <!-- === Daily Weight Loss Routine === -->
 <section class="kw-routine" id="free-keto-guide">
-    <img src="logo.webp?v=20260417" alt="KetoFlow" class="kw-routine-bg-logo">
-    <img src="Images/routine/right-product.webp?v=20260417" alt="" class="kw-routine-bg-product">
+    <img data-src="logo.webp?v=20260417" alt="KetoFlow" class="kw-routine-bg-logo" width="298" height="400">
+    <img data-src="Images/routine/right-product.webp?v=20260417" alt="" class="kw-routine-bg-product" width="1000" height="1000">
     <div class="kw-routine-inner">
         <div class="kw-routine-header">
             <p class="eyebrow">Your Daily Guide To Sustainable Weight Loss</p>
@@ -4099,7 +4108,7 @@ html, body { overflow-x: hidden; scroll-behavior: smooth; }
                         <div class="text"><strong>5. Daily Intentions</strong>Set 1 health goal for today</div>
                     </li>
                 </ul>
-                <img src="Images/routine/a.webp?v=20260417" alt="" class="kw-routine-deco kw-routine-deco--matcha">
+                <img data-src="Images/routine/a.webp?v=20260417" alt="" class="kw-routine-deco kw-routine-deco--matcha" width="813" height="465">
             </div>
 
             <!-- DAY -->
@@ -4133,7 +4142,7 @@ html, body { overflow-x: hidden; scroll-behavior: smooth; }
                         <div class="text"><strong>5. Mindful Lunch</strong>Portion control, eat slow</div>
                     </li>
                 </ul>
-                <img src="Images/routine/b.webp?v=20260417" alt="" class="kw-routine-deco kw-routine-deco--lemons">
+                <img data-src="Images/routine/b.webp?v=20260417" alt="" class="kw-routine-deco kw-routine-deco--lemons" width="687" height="606">
             </div>
 
             <!-- EVENING -->
@@ -4167,7 +4176,7 @@ html, body { overflow-x: hidden; scroll-behavior: smooth; }
                         <div class="text"><strong>5. Quality Sleep</strong>7-9 hrs of restful sleep</div>
                     </li>
                 </ul>
-                <img src="Images/routine/c.webp?v=20260417" alt="" class="kw-routine-deco kw-routine-deco--coffee">
+                <img data-src="Images/routine/c.webp?v=20260417" alt="" class="kw-routine-deco kw-routine-deco--coffee" width="756" height="399">
             </div>
         </div>
 
@@ -4210,7 +4219,7 @@ html, body { overflow-x: hidden; scroll-behavior: smooth; }
 			<div class="row" id="ingredients-section">
 				<div class="col-6 col-md-2 mb-3">
 					<div class="kw-ing-card">
-						<img src="Images/ingredients/bhb-ketone-blend.webp?v=20260417" class="img-fluid rounded-circle mx-auto d-block" alt="BHB Ketone Blend">
+						<img data-src="Images/ingredients/bhb-ketone-blend.webp?v=20260417" class="img-fluid rounded-circle mx-auto d-block" alt="BHB Ketone Blend" width="1000" height="1000">
 						<h5>BHB Ketone Blend</h5>
 						<a class="kw-ing-toggle" href="#ing-bhb" role="button" aria-expanded="false" aria-controls="ing-bhb">Read more</a>
 						<div class="collapse kw-ing-body" id="ing-bhb">
@@ -4221,7 +4230,7 @@ html, body { overflow-x: hidden; scroll-behavior: smooth; }
 				</div>
 				<div class="col-6 col-md-2 mb-3">
 					<div class="kw-ing-card">
-						<img src="Images/ingredients/mct-oil-powder.webp?v=20260417" class="img-fluid rounded-circle mx-auto d-block" alt="MCT Oil Powder">
+						<img data-src="Images/ingredients/mct-oil-powder.webp?v=20260417" class="img-fluid rounded-circle mx-auto d-block" alt="MCT Oil Powder" width="1000" height="1000">
 						<h5>MCT Oil Powder</h5>
 						<a class="kw-ing-toggle" href="#ing-mct" role="button" aria-expanded="false" aria-controls="ing-mct">Read more</a>
 						<div class="collapse kw-ing-body" id="ing-mct">
@@ -4232,7 +4241,7 @@ html, body { overflow-x: hidden; scroll-behavior: smooth; }
 				</div>
 				<div class="col-6 col-md-2 mb-3">
 					<div class="kw-ing-card">
-						<img src="Images/ingredients/irish-sea-moss.webp?v=20260417" class="img-fluid rounded-circle mx-auto d-block" alt="Irish Sea Moss">
+						<img data-src="Images/ingredients/irish-sea-moss.webp?v=20260417" class="img-fluid rounded-circle mx-auto d-block" alt="Irish Sea Moss" width="1000" height="1000">
 						<h5>Irish Sea Moss</h5>
 						<a class="kw-ing-toggle" href="#ing-moss" role="button" aria-expanded="false" aria-controls="ing-moss">Read more</a>
 						<div class="collapse kw-ing-body" id="ing-moss">
@@ -4243,7 +4252,7 @@ html, body { overflow-x: hidden; scroll-behavior: smooth; }
 				</div>
 				<div class="col-6 col-md-2 mb-3">
 					<div class="kw-ing-card">
-						<img src="Images/ingredients/acv.webp?v=20260417" class="img-fluid rounded-circle mx-auto d-block" alt="Apple Cider Vinegar">
+						<img data-src="Images/ingredients/acv.webp?v=20260417" class="img-fluid rounded-circle mx-auto d-block" alt="Apple Cider Vinegar" width="1000" height="1000">
 						<h5>Apple Cider Vinegar</h5>
 						<a class="kw-ing-toggle" href="#ing-acv" role="button" aria-expanded="false" aria-controls="ing-acv">Read more</a>
 						<div class="collapse kw-ing-body" id="ing-acv">
@@ -4254,7 +4263,7 @@ html, body { overflow-x: hidden; scroll-behavior: smooth; }
 				</div>
 				<div class="col-6 col-md-2 mb-3">
 					<div class="kw-ing-card">
-						<img src="Images/ingredients/green-tea-extract.webp?v=20260417" class="img-fluid rounded-circle mx-auto d-block" alt="Green Tea Extract">
+						<img data-src="Images/ingredients/green-tea-extract.webp?v=20260417" class="img-fluid rounded-circle mx-auto d-block" alt="Green Tea Extract" width="1000" height="1000">
 						<h5>Green Tea Extract</h5>
 						<a class="kw-ing-toggle" href="#ing-gte" role="button" aria-expanded="false" aria-controls="ing-gte">Read more</a>
 						<div class="collapse kw-ing-body" id="ing-gte">
@@ -4265,7 +4274,7 @@ html, body { overflow-x: hidden; scroll-behavior: smooth; }
 				</div>
 				<div class="col-6 col-md-2 mb-3">
 					<div class="kw-ing-card">
-						<img src="Images/ingredients/bioperine.webp?v=20260417" class="img-fluid rounded-circle mx-auto d-block" alt="BioPerine Black Pepper Extract">
+						<img data-src="Images/ingredients/bioperine.webp?v=20260417" class="img-fluid rounded-circle mx-auto d-block" alt="BioPerine Black Pepper Extract" width="1000" height="1000">
 						<h5>BioPerine</h5>
 						<a class="kw-ing-toggle" href="#ing-bio" role="button" aria-expanded="false" aria-controls="ing-bio">Read more</a>
 						<div class="collapse kw-ing-body" id="ing-bio">
@@ -4304,7 +4313,7 @@ html, body { overflow-x: hidden; scroll-behavior: smooth; }
 <div class="mv-title"><h3>Yes, You Can Eat <span class="mv-highlight">Without Guilt</span></h3></div>
 <div class="mv-player" data-video-id="kw-eat" data-cf-id="eac1d87a941fb3ab2c3b7e698190a4bf">
     <span class="mv-badge">EAT FREELY</span>
-    <img class="mv-poster" src="video_clips/posters/clip5.webp?v=20260417" alt="">
+    <img class="mv-poster" data-src="video_clips/posters/clip5.webp?v=20260417" alt="" width="960" height="540">
     <div class="mv-play-overlay" onclick="ytFacadePlay(this)" onmouseenter="ytFacadeHover(this)">
         <div class="mv-play-btn">
             <svg class="mv-play-icon" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="6,3 20,12 6,21"/></svg>
@@ -4317,22 +4326,22 @@ html, body { overflow-x: hidden; scroll-behavior: smooth; }
 <!-- Money-Back Guarantee scrolling bar -->
 <div class="guarantee-bar" aria-label="Money-back guarantee">
     <div class="guarantee-track">
-        <div class="guarantee-item"><img src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
-        <div class="guarantee-item"><img src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
-        <div class="guarantee-item"><img src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
-        <div class="guarantee-item"><img src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
-        <div class="guarantee-item"><img src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
-        <div class="guarantee-item"><img src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
-        <div class="guarantee-item"><img src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
-        <div class="guarantee-item"><img src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
-        <div class="guarantee-item"><img src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
-        <div class="guarantee-item"><img src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
-        <div class="guarantee-item"><img src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
-        <div class="guarantee-item"><img src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
-        <div class="guarantee-item"><img src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
-        <div class="guarantee-item"><img src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
-        <div class="guarantee-item"><img src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
-        <div class="guarantee-item"><img src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
+        <div class="guarantee-item"><img data-src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
+        <div class="guarantee-item"><img data-src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
+        <div class="guarantee-item"><img data-src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
+        <div class="guarantee-item"><img data-src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
+        <div class="guarantee-item"><img data-src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
+        <div class="guarantee-item"><img data-src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
+        <div class="guarantee-item"><img data-src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
+        <div class="guarantee-item"><img data-src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
+        <div class="guarantee-item"><img data-src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
+        <div class="guarantee-item"><img data-src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
+        <div class="guarantee-item"><img data-src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
+        <div class="guarantee-item"><img data-src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
+        <div class="guarantee-item"><img data-src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
+        <div class="guarantee-item"><img data-src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
+        <div class="guarantee-item"><img data-src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
+        <div class="guarantee-item"><img data-src="Images/icon-guarantee.svg" alt="">Money-Back Guarantee</div>
     </div>
 </div>
 
@@ -4356,17 +4365,17 @@ html, body { overflow-x: hidden; scroll-behavior: smooth; }
 					<div class="col-12 col-lg-6">
 						<div class="pxp-gallery">
 							<div class="pxp-gallery-thumbs">
-								<img src="product_images/kw-ice-tub.webp?v=20260417" alt="KetoFlow Ice Tub" class="pxp-thumb" onclick="pxpGallerySelect(this)">
-								<img src="product_images/img-16.webp?v=20260417" alt="KetoFlow" class="pxp-thumb" onclick="pxpGallerySelect(this)">
-								<img src="product_images/img-04.webp?v=20260417" alt="KetoFlow" class="pxp-thumb" onclick="pxpGallerySelect(this)">
-								<img src="product_images/img-14.webp?v=20260417" alt="KetoFlow" class="pxp-thumb" onclick="pxpGallerySelect(this)">
+								<img data-src="product_images/kw-ice-tub.webp?v=20260417" alt="KetoFlow Ice Tub" class="pxp-thumb" onclick="pxpGallerySelect(this)" width="1000" height="1000">
+								<img data-src="product_images/img-16.webp?v=20260417" alt="KetoFlow" class="pxp-thumb" onclick="pxpGallerySelect(this)" width="1000" height="1000">
+								<img data-src="product_images/img-04.webp?v=20260417" alt="KetoFlow" class="pxp-thumb" onclick="pxpGallerySelect(this)" width="1000" height="1000">
+								<img data-src="product_images/img-14.webp?v=20260417" alt="KetoFlow" class="pxp-thumb" onclick="pxpGallerySelect(this)" width="1000" height="1000">
 								
 
 							</div>
 							<div class="pxp-gallery-main">
 								<div class="pxp-gallery-img-wrap">
 									<button class="pxp-arrow pxp-arrow-left" onclick="pxpGalleryNav(this,-1)"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
-									<img src="product_images/kw-ice-tub.webp?v=20260417" alt="KetoFlow" class="pxp-main-img">
+									<img data-src="product_images/kw-ice-tub.webp?v=20260417" alt="KetoFlow" class="pxp-main-img" width="1000" height="1000">
 									<button class="pxp-arrow pxp-arrow-right" onclick="pxpGalleryNav(this,1)"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></button>
 								</div>
 							</div>
@@ -4375,7 +4384,7 @@ html, body { overflow-x: hidden; scroll-behavior: smooth; }
 					<div class="col-12 col-lg-6 col-md-10 mx-auto prod-description px-1 px-md-3 my-auto">
 						<h3 class="font-weight-bold mb-0">KetoFlow<sup>™</sup></h3>
 						<div class="stars mb-2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> <span class="text-dark">|</span> <span class="font-weight-bold text-success">In Stock</span></div>
-						<div class="pxp-tp-wrap"><span class="pxp-trustpilot-bar"><img src="Images/star-4.5.svg" alt="Trustpilot Stars" class="pxp-tp-stars"><span class="pxp-tp-score">4.7</span><span class="pxp-tp-sep">|</span><span class="pxp-tp-text">Rated <strong>Excellent</strong> based on 2000+ Reviews</span></span></div>
+						<div class="pxp-tp-wrap"><span class="pxp-trustpilot-bar"><img data-src="Images/star-4.5.svg" alt="Trustpilot Stars" class="pxp-tp-stars"><span class="pxp-tp-score">4.7</span><span class="pxp-tp-sep">|</span><span class="pxp-tp-text">Rated <strong>Excellent</strong> based on 2000+ Reviews</span></span></div>
 						<p class="mt-2 mt-md-0">The powerful natural formula inside KetoFlow™ helps you burn fat fast and drop stubborn pounds…</p>
 						<ul class="check-list">
 							<li>Trigger instant fat burning</li>
@@ -4383,7 +4392,7 @@ html, body { overflow-x: hidden; scroll-behavior: smooth; }
 							<li>Curb cravings and appetite</li>
 							<li>Increase energy and stamina</li>
 						</ul>
-						<div class="pxp-social-proof"><span class="pxp-sp-group"><img src="Images/socials.webp?v=20260417" alt="Happy Customers" class="pxp-sp-faces"><span class="pxp-sp-text"><strong>+2K</strong> Happy Customers</span></span><span class="pxp-sp-stock"><span class="pxp-sp-dot"></span> In stock and ready to ship</span></div>
+						<div class="pxp-social-proof"><span class="pxp-sp-group"><img data-src="Images/socials.webp?v=20260417" alt="Happy Customers" class="pxp-sp-faces" width="97" height="32"><span class="pxp-sp-text"><strong>+2K</strong> Happy Customers</span></span><span class="pxp-sp-stock"><span class="pxp-sp-dot"></span> In stock and ready to ship</span></div>
 
 						<div style="display:inline-block;text-align:center;">
 							<div class="button-center riskfree text-center text-uppercase">
@@ -4415,23 +4424,23 @@ html, body { overflow-x: hidden; scroll-behavior: smooth; }
 			<div class="container">
 				<div class="row mx-auto justify-content-center" id="ATC-section">
 					<div class="col-6 col-md-2">
-						<img src="https://cdn.truegcloud.com/ovunashop/img/Layer_1_to.png" class="rounded-circle img-fluid bg-blue mx-auto" alt="">
+						<img data-src="https://cdn.truegcloud.com/ovunashop/img/Layer_1_to.png" class="rounded-circle img-fluid bg-blue mx-auto" alt="">
 						<p class="text-center">60-day, 100% money-back guarantee</p>
 					</div>
 					<div class="col-6 col-md-2">
-						<img src="https://cdn.truegcloud.com/ovunashop/img/Layer_1_tp.png" class="rounded-circle img-fluid bg-blue mx-auto" alt="">
+						<img data-src="https://cdn.truegcloud.com/ovunashop/img/Layer_1_tp.png" class="rounded-circle img-fluid bg-blue mx-auto" alt="">
 						<p class="text-center">Fast and <br class="d-none d-lg-block">FREE shipping</p>
 					</div>
 					<div class="col-6 col-md-2">
-						<img src="https://cdn.truegcloud.com/ovunashop/img/Layer_1_tq.png" class="rounded-circle img-fluid bg-blue mx-auto" alt="">
+						<img data-src="https://cdn.truegcloud.com/ovunashop/img/Layer_1_tq.png" class="rounded-circle img-fluid bg-blue mx-auto" alt="">
 						<p class="text-center">Massive savings <br class="d-none d-lg-block">when you buy more</p>
 					</div>
 					<div class="col-6 col-md-2">
-						<img src="https://cdn.truegcloud.com/ovunashop/img/Layer_1_tr.png" class="rounded-circle img-fluid bg-blue mx-auto" alt="">
+						<img data-src="https://cdn.truegcloud.com/ovunashop/img/Layer_1_tr.png" class="rounded-circle img-fluid bg-blue mx-auto" alt="">
 						<p class="text-center">Made in an FDA <br class="d-none d-lg-block">inspected facility</p>
 					</div>
 					<div class="col-6 col-md-2">
-						<img src="https://cdn.truegcloud.com/ovunashop/img/Layer_1_ts.png" class="rounded-circle img-fluid bg-blue mx-auto" alt="">
+						<img data-src="https://cdn.truegcloud.com/ovunashop/img/Layer_1_ts.png" class="rounded-circle img-fluid bg-blue mx-auto" alt="">
 						<p class="text-center">One-time purchase, no hidden fees</p>
 					</div>
 
@@ -4815,14 +4824,14 @@ button:focus-visible {
 
 
 <!-- Stock banner #4: above pricing cards -->
-<div class="kw-stock-banner"><img src="Images/stock-running-low.webp?v=20260417" alt="Stock Running Low — Order Now"></div>
+<div class="kw-stock-banner"><img data-src="Images/stock-running-low.webp?v=20260417" alt="Stock Running Low — Order Now" width="1200" height="669"></div>
 
 <!-- NEW PRICING CARDS -->
 <section id="bottomorder" style="padding: 20px 0;">
 <div class="container-fluid" style="max-width: 1400px;">
 <div class="row">
 <div class="col-12">
-<div class="kw-vip-banner"><img src="Images/vip-customer-banner.webp?v=20260417" alt="VIP Customer Program — Limited to First 1,000 Members"></div>
+<div class="kw-vip-banner"><img data-src="Images/vip-customer-banner.webp?v=20260417" alt="VIP Customer Program — Limited to First 1,000 Members" width="1200" height="669"></div>
 
 
 <div id="buynow" class="mt-product-grid">
@@ -4834,7 +4843,7 @@ button:focus-visible {
     </div>
     <div class="mt-product-content">
       <div class="mt-product-image">
-        <img src="product_images/2_jar.webp?v=20260417" alt="KetoFlow 2 Jars" style="border-radius: 12px;">
+        <img data-src="product_images/2_jar.webp?v=20260417" alt="KetoFlow 2 Jars" style="border-radius: 12px;" width="1200" height="896">
       </div>
       <div class="mt-product-details">
         <div class="mt-product-price">
@@ -4842,15 +4851,15 @@ button:focus-visible {
           <div class="mt-price-info"><p>/Jar</p></div>
         </div>
         <div class="mt-badge-images">
-          <img src="pills/save200.png" alt="You Save $200" class="badge-img">
-          <img src="pills/60days.webp?v=20260417" alt="60 Days Guarantee" class="badge-img">
+          <img data-src="pills/save200.png" alt="You Save $200" class="badge-img" width="924" height="126">
+          <img data-src="pills/60days.webp?v=20260417" alt="60 Days Guarantee" class="badge-img" width="924" height="126">
         </div>
         <a href="#" class="mt-buy-now-btn">
-          <img src="Images/buy-now-btn.png" alt="Buy Now">
+          <img data-src="Images/buy-now-btn.png" alt="Buy Now" width="356" height="88">
         </a>
         <p class="mt-shipping-text">+ $19.99 Shipping</p>
         <p class="mt-total-line">TOTAL: <span class="mt-strikethrough">$260</span> <span class="mt-final-price">$158</span></p>
-        <div class="mt-payment-icons"><img src="lib/img/cards.webp?v=20260417" alt="Payment Methods"></div>
+        <div class="mt-payment-icons"><img data-src="lib/img/cards.webp?v=20260417" alt="Payment Methods" width="948" height="96"></div>
       </div>
     </div>
   </div>
@@ -4863,7 +4872,7 @@ button:focus-visible {
     </div>
     <div class="mt-product-content">
       <div class="mt-product-image">
-        <img src="product_images/5plus1_jar.webp?v=20260417" alt="KetoFlow 5+1 Jars - Best Value" style="border-radius: 12px;">
+        <img data-src="product_images/5plus1_jar.webp?v=20260417" alt="KetoFlow 5+1 Jars - Best Value" style="border-radius: 12px;" width="1200" height="896">
       </div>
       <div class="mt-product-details">
         <div class="mt-product-price">
@@ -4872,16 +4881,16 @@ button:focus-visible {
         </div>
 
         <div class="mt-badge-images">
-          <img src="pills/780.png" alt="You Save $780" class="badge-img">
-          <img src="pills/discount.png" alt="Biggest Discount" class="badge-img">
-          <img src="pills/60days.webp?v=20260417" alt="60 Days Guarantee" class="badge-img">
+          <img data-src="pills/780.png" alt="You Save $780" class="badge-img" width="924" height="126">
+          <img data-src="pills/discount.png" alt="Biggest Discount" class="badge-img" width="924" height="126">
+          <img data-src="pills/60days.webp?v=20260417" alt="60 Days Guarantee" class="badge-img" width="924" height="126">
         </div>
         <a href="#" class="mt-buy-now-btn">
-          <img src="Images/buy-now-btn.png" alt="Buy Now">
+          <img data-src="Images/buy-now-btn.png" alt="Buy Now" width="356" height="88">
         </a>
         <p class="mt-shipping-text">FREE Shipping</p>
         <p class="mt-total-line">TOTAL: <span class="mt-strikethrough">$534</span> <span class="mt-final-price">$245</span></p>
-        <div class="mt-payment-icons"><img src="lib/img/cards.webp?v=20260417" alt="Payment Methods"></div>
+        <div class="mt-payment-icons"><img data-src="lib/img/cards.webp?v=20260417" alt="Payment Methods" width="948" height="96"></div>
       </div>
     </div>
   </div>
@@ -4894,7 +4903,7 @@ button:focus-visible {
     </div>
     <div class="mt-product-content">
       <div class="mt-product-image">
-        <img src="product_images/3_jar.webp?v=20260417" alt="KetoFlow 3 Jars" style="border-radius: 12px;">
+        <img data-src="product_images/3_jar.webp?v=20260417" alt="KetoFlow 3 Jars" style="border-radius: 12px;" width="1200" height="896">
       </div>
       <div class="mt-product-details">
         <div class="mt-product-price">
@@ -4902,15 +4911,15 @@ button:focus-visible {
           <div class="mt-price-info"><p>/Jar</p></div>
         </div>
         <div class="mt-badge-images">
-          <img src="pills/450.webp?v=20260417" alt="You Save $450" class="badge-img">
-          <img src="pills/60days.webp?v=20260417" alt="60 Days Guarantee" class="badge-img">
+          <img data-src="pills/450.webp?v=20260417" alt="You Save $450" class="badge-img" width="924" height="126">
+          <img data-src="pills/60days.webp?v=20260417" alt="60 Days Guarantee" class="badge-img" width="924" height="126">
         </div>
         <a href="#" class="mt-buy-now-btn">
-          <img src="Images/buy-now-btn.png" alt="Buy Now">
+          <img data-src="Images/buy-now-btn.png" alt="Buy Now" width="356" height="88">
         </a>
         <p class="mt-shipping-text">FREE Shipping</p>
         <p class="mt-total-line">TOTAL: <span class="mt-strikethrough">$642</span> <span class="mt-final-price">$192</span></p>
-        <div class="mt-payment-icons"><img src="lib/img/cards.webp?v=20260417" alt="Payment Methods"></div>
+        <div class="mt-payment-icons"><img data-src="lib/img/cards.webp?v=20260417" alt="Payment Methods" width="948" height="96"></div>
       </div>
     </div>
   </div>
@@ -4930,7 +4939,7 @@ button:focus-visible {
         <div class="row">
             <div class="col-12 col-sm-8 col-md-11 mx-auto">
             	<h5 class="text-center mb-0"><i class="fas fa-lock"></i> 100% SAFE & SECURE CHECKOUT WITH:</h5>
-                    <img class="img-fluid mx-auto d-block mt-0 mb-2" src="https://cdn.truegcloud.com/ovunashop/img/credit-cards-logos.png" alt="">
+                    <img class="img-fluid mx-auto d-block mt-0 mb-2" data-src="https://cdn.truegcloud.com/ovunashop/img/credit-cards-logos.png" alt="">
             </div>
         </div>
     </div>
@@ -5233,7 +5242,7 @@ button:focus-visible {
 
 
 <!-- Stock banner #5: above bottom CTA -->
-<div class="kw-stock-banner"><img src="Images/stock-running-low.webp?v=20260417" alt="Stock Running Low — Order Now"></div>
+<div class="kw-stock-banner"><img data-src="Images/stock-running-low.webp?v=20260417" alt="Stock Running Low — Order Now" width="1200" height="669"></div>
 
 	<section class="kw-bottom-cta">
 		<div class="container">
@@ -5421,7 +5430,7 @@ button:focus-visible {
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-2">
-				<img src="logo.webp?v=20260417" alt="KetoFlow" class="img-fluid mb-4" style="max-width: 150px;">
+				<img data-src="logo.webp?v=20260417" alt="KetoFlow" class="img-fluid mb-4" style="max-width: 150px;" width="298" height="400">
 			</div>
 			<div class="col-lg-6 order-lg-1">
 				<h6 style="color: #A4F13A;">Disclaimer</h6>
@@ -5745,20 +5754,20 @@ button:focus-visible {
         <div class="custom-notification-container">
             <div class="kw-avatar-wrap">
                 <div class="custom-notification-image-wrapper">
-                    <img src="Images/reviews/emily-j.webp?v=20260417" alt="Customer">
+                    <img data-src="Images/reviews/emily-j.webp?v=20260417" alt="Customer" width="120" height="120">
                 </div>
-                <img src="Images/verified-badge.png" class="kw-verified-badge" alt="Verified">
+                <img data-src="Images/verified-badge.png" class="kw-verified-badge" alt="Verified" width="512" height="512">
             </div>
             <div class="custom-notification-content-wrapper">
                 <p class="custom-notification-content">
                     <span class="kw-notif-name"><span id="notify-customer">Emily</span> in <span id="notify-state">FL</span></span> <span class="kw-notif-text">just started her <b>KetoFlow&trade;</b> journey!</span>
                     <span class="kw-notif-verified"><span>Verified Buyer &middot; <span id="notify-ago">just now</span></span></span>
                     <span class="kw-notif-stars">
-                        <img src="Images/star-4.5.svg" alt="4.5 stars" class="kw-stars-img">
+                        <img data-src="Images/star-4.5.svg" alt="4.5 stars" class="kw-stars-img">
                     </span>
                 </p>
             </div>
-            <img src="Images/notification-jar.webp?v=20260417" class="kw-notif-jar" alt="KetoFlow">
+            <img data-src="Images/notification-jar.webp?v=20260417" class="kw-notif-jar" alt="KetoFlow" width="1000" height="1000">
         </div>
         <button class="custom-close" aria-label="Close">&times;</button>
         <div class="kw-progress-bar"></div>
@@ -6258,21 +6267,42 @@ function localVideoPlay(overlay){
     if(done)return; done=true;
     sk.classList.add('kw-sk-out');
     setTimeout(function(){if(sk.parentNode)sk.parentNode.removeChild(sk);},500);
+    /* Start sequential image loader after skeleton fade */
+    setTimeout(loadDeferred,100);
   }
-  var loaded=0, needed=2;
+  var loaded=0, needed=3;
   function tick(){if(++loaded>=needed)dismiss();}
-  /* Track hero bg + first video poster */
+  /* Track: hero bg, logo, first video poster */
   var a=new Image(); a.onload=a.onerror=tick; a.src='product_images/hero-bg.webp?v=20260417b';
-  var b=new Image(); b.onload=b.onerror=tick; b.src='video_clips/posters/hook.webp?v=20260417';
+  var b=new Image(); b.onload=b.onerror=tick; b.src='logo.webp?v=20260417';
+  var c=new Image(); c.onload=c.onerror=tick; c.src='video_clips/posters/hook.webp?v=20260417';
   /* Hard fallback: 4s max */
   setTimeout(dismiss,4000);
 })();
+
+/* ── Sequential top-to-bottom loader (3 parallel streams, no flash) ── */
+function loadDeferred(){
+  var imgs=document.querySelectorAll('img[data-src]');
+  var i=0;
+  function loadNext(){
+    if(i>=imgs.length)return;
+    var img=imgs[i++];
+    img.onload=img.onerror=function(){
+      img.classList.add('kw-loaded');
+      loadNext();
+    };
+    img.src=img.getAttribute('data-src');
+    img.removeAttribute('data-src');
+  }
+  /* 3 parallel streams for speed, DOM order = top-to-bottom priority */
+  loadNext(); loadNext(); loadNext();
+}
 </script>
 
 <!-- ── Exit Intent Popup ── -->
 <div id="kw-exit-overlay">
   <div id="kw-exit-popup">
-    <img src="Images/exit-popup.webp?v=20260417" alt="Wait! Don't Leave — Get Extra 10-30% Discount If You Stay">
+    <img data-src="Images/exit-popup.webp?v=20260417" alt="Wait! Don't Leave — Get Extra 10-30% Discount If You Stay" width="1200" height="669">
   </div>
 </div>
 <style>

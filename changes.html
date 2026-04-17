@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Changes Control Panel — KetoFlow</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    background: #f5f6f8;
+    color: #1f2937;
+    padding: 24px;
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  h1 { margin: 0; font-size: 22px; }
+  .sub { color: #6b7280; font-size: 13px; margin-top: 4px; }
+  .actions { display: flex; gap: 8px; align-items: center; }
+  .btn {
+    background: #111827; color: #fff; border: 0; padding: 8px 14px;
+    border-radius: 6px; font-size: 13px; cursor: pointer; font-weight: 500;
+  }
+  .btn:hover { background: #374151; }
+  .btn.secondary { background: #e5e7eb; color: #111827; }
+  .btn.secondary:hover { background: #d1d5db; }
+  .btn.danger { background: #dc2626; }
+  .btn.danger:hover { background: #b91c1c; }
+
+  .stats {
+    display: flex; gap: 16px; margin-bottom: 16px; flex-wrap: wrap;
+  }
+  .stat {
+    background: #fff; border: 1px solid #e5e7eb; border-radius: 8px;
+    padding: 10px 14px; font-size: 13px;
+  }
+  .stat b { font-size: 18px; display: block; color: #111827; }
+
+  .card {
+    background: #fff; border: 1px solid #e5e7eb; border-radius: 10px;
+    overflow: hidden;
+  }
+  table { width: 100%; border-collapse: collapse; }
+  th, td {
+    text-align: left; padding: 12px 14px; border-bottom: 1px solid #f1f2f5;
+    font-size: 13px; vertical-align: middle;
+  }
+  th {
+    background: #fafafa; font-weight: 600; color: #6b7280;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  tr:last-child td { border-bottom: 0; }
+  tr:hover td { background: #fafbfc; }
+  .id { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; color: #6b7280; }
+  .desc { color: #111827; font-weight: 500; }
+  .page-tag {
+    display: inline-block; background: #eef2ff; color: #4338ca;
+    padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 500;
+  }
+  .status { font-size: 12px; font-weight: 500; }
+  .status.on { color: #059669; }
+  .status.off { color: #9ca3af; }
+
+  .switch {
+    position: relative; display: inline-block;
+    width: 44px; height: 24px;
+  }
+  .switch input { opacity: 0; width: 0; height: 0; }
+  .slider {
+    position: absolute; cursor: pointer; inset: 0;
+    background: #d1d5db; transition: .2s; border-radius: 24px;
+  }
+  .slider:before {
+    content: ""; position: absolute; height: 18px; width: 18px;
+    left: 3px; bottom: 3px; background: #fff; transition: .2s; border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+  input:checked + .slider { background: #10b981; }
+  input:checked + .slider:before { transform: translateX(20px); }
+
+  .empty {
+    padding: 40px 20px; text-align: center; color: #9ca3af; font-size: 14px;
+  }
+  .empty code {
+    background: #f3f4f6; padding: 2px 6px; border-radius: 4px;
+    font-size: 12px; color: #111827;
+  }
+
+  footer {
+    margin-top: 20px; font-size: 12px; color: #9ca3af; text-align: center;
+  }
+  footer a { color: #6b7280; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Changes Control Panel</h1>
+      <div class="sub">Toggle changes on/off. State is saved per browser and applies live.</div>
+    </div>
+    <div class="actions">
+      <button class="btn secondary" id="enableAll">Enable all</button>
+      <button class="btn secondary" id="disableAll">Disable all</button>
+      <button class="btn danger" id="resetAll">Reset</button>
+    </div>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><b id="statTotal">0</b>Total changes</div>
+    <div class="stat"><b id="statOn">0</b>Active</div>
+    <div class="stat"><b id="statOff">0</b>Reverted</div>
+  </div>
+
+  <div class="card">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:90px;">ID</th>
+          <th>Description</th>
+          <th style="width:140px;">Page</th>
+          <th style="width:100px;">Status</th>
+          <th style="width:80px;">Toggle</th>
+        </tr>
+      </thead>
+      <tbody id="changesBody">
+        <!-- Rows auto-populated from the CHANGES registry below -->
+      </tbody>
+    </table>
+  </div>
+
+  <footer>
+    KetoFlow — internal change control. <a href="index.html">Back to site</a>
+  </footer>
+</div>
+
+<script src="lib/js/changes-toggle.js"></script>
+<script>
+  // ============================================================
+  // CHANGES REGISTRY — add a row here each time we ship a change.
+  // Shape: { id, description, page, defaultOn }
+  // The same `id` must be used on the target page via data-change-id.
+  // ============================================================
+  var CHANGES = [
+    { id: 'remove-press-bar', description: 'Remove "As Featured In" scrolling press logo bar', page: 'desktop.html', defaultOn: false },
+  ];
+
+  var body = document.getElementById('changesBody');
+  var statTotal = document.getElementById('statTotal');
+  var statOn = document.getElementById('statOn');
+  var statOff = document.getElementById('statOff');
+
+  function render() {
+    var state = KetoflowChanges.get();
+    body.innerHTML = '';
+
+    if (!CHANGES.length) {
+      body.innerHTML = '<tr><td colspan="5" class="empty">' +
+        'No changes registered yet. Add entries to the <code>CHANGES</code> array in <code>changes.html</code>.' +
+        '</td></tr>';
+      statTotal.textContent = '0';
+      statOn.textContent = '0';
+      statOff.textContent = '0';
+      return;
+    }
+
+    var on = 0;
+    CHANGES.forEach(function (c) {
+      var checked = (c.id in state) ? state[c.id] : !!c.defaultOn;
+      if (checked) on++;
+
+      var tr = document.createElement('tr');
+      tr.innerHTML =
+        '<td class="id">' + c.id + '</td>' +
+        '<td class="desc">' + c.description + '</td>' +
+        '<td><span class="page-tag">' + c.page + '</span></td>' +
+        '<td><span class="status ' + (checked ? 'on' : 'off') + '" data-status="' + c.id + '">' +
+          (checked ? 'Active' : 'Reverted') + '</span></td>' +
+        '<td>' +
+          '<label class="switch">' +
+            '<input type="checkbox" data-toggle="' + c.id + '"' + (checked ? ' checked' : '') + '>' +
+            '<span class="slider"></span>' +
+          '</label>' +
+        '</td>';
+      body.appendChild(tr);
+    });
+
+    statTotal.textContent = CHANGES.length;
+    statOn.textContent = on;
+    statOff.textContent = CHANGES.length - on;
+  }
+
+  body.addEventListener('change', function (e) {
+    var input = e.target.closest('input[data-toggle]');
+    if (!input) return;
+    var id = input.getAttribute('data-toggle');
+    KetoflowChanges.set(id, input.checked);
+    var label = document.querySelector('[data-status="' + id + '"]');
+    if (label) {
+      label.textContent = input.checked ? 'Active' : 'Reverted';
+      label.className = 'status ' + (input.checked ? 'on' : 'off');
+    }
+    var state = KetoflowChanges.get();
+    var on = CHANGES.reduce(function (n, c) { return n + (state[c.id] ? 1 : 0); }, 0);
+    statOn.textContent = on;
+    statOff.textContent = CHANGES.length - on;
+  });
+
+  document.getElementById('enableAll').addEventListener('click', function () {
+    CHANGES.forEach(function (c) { KetoflowChanges.set(c.id, true); });
+    render();
+  });
+  document.getElementById('disableAll').addEventListener('click', function () {
+    CHANGES.forEach(function (c) { KetoflowChanges.set(c.id, false); });
+    render();
+  });
+  document.getElementById('resetAll').addEventListener('click', function () {
+    if (confirm('Reset all toggles to their defaults?')) {
+      KetoflowChanges.reset();
+      render();
+    }
+  });
+
+  render();
+</script>
+</body>
+</html>

@@ -1,4 +1,4 @@
 {
-  "remove-press-bar": false,
-  "remove-wedding-story": false
+  "remove-press-bar": true,
+  "remove-wedding-story": true
 }

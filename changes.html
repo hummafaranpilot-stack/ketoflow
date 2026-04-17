@@ -99,6 +99,36 @@
     margin-top: 20px; font-size: 12px; color: #9ca3af; text-align: center;
   }
   footer a { color: #6b7280; }
+
+  .pending {
+    background: #fffbeb; border: 1px solid #fcd34d; border-radius: 10px;
+    padding: 16px 18px; margin-top: 20px;
+  }
+  .pending.clean { display: none; }
+  .pending h3 { margin: 0 0 6px 0; font-size: 14px; color: #92400e; }
+  .pending p { margin: 0 0 10px 0; font-size: 12px; color: #78350f; }
+  .pending pre {
+    background: #1f2937; color: #f9fafb; padding: 12px; border-radius: 6px;
+    font-size: 12px; overflow-x: auto; margin: 0 0 10px 0;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  .pending-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+  .banner {
+    background: #eef2ff; border: 1px solid #c7d2fe; border-radius: 8px;
+    padding: 10px 14px; margin-bottom: 16px; font-size: 12px; color: #3730a3;
+  }
+  .banner b { color: #1e3a8a; }
+
+  .dot {
+    display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+    background: #fbbf24; margin-right: 6px; vertical-align: middle;
+  }
+  tr.dirty td:first-child::before {
+    content: ""; display: inline-block; width: 6px; height: 6px;
+    border-radius: 50%; background: #f59e0b; margin-right: 6px;
+    vertical-align: middle;
+  }
 </style>
 </head>
 <body>
@@ -106,14 +136,16 @@
   <header>
     <div>
       <h1>Changes Control Panel</h1>
-      <div class="sub">Toggle changes on/off. State is saved per browser and applies live.</div>
+      <div class="sub">State comes from <code>changes.json</code>. Flip a toggle to stage an update, then commit the JSON to deploy for all visitors.</div>
     </div>
     <div class="actions">
       <button class="btn secondary" id="enableAll">Enable all</button>
       <button class="btn secondary" id="disableAll">Disable all</button>
-      <button class="btn danger" id="resetAll">Reset</button>
+      <button class="btn secondary" id="revertStaged">Revert staged</button>
     </div>
   </header>
+
+  <div class="banner" id="statusBanner">Loading current deployed state from <b>changes.json</b>…</div>
 
   <div class="stats">
     <div class="stat"><b id="statTotal">0</b>Total changes</div>
@@ -138,6 +170,16 @@
     </table>
   </div>
 
+  <div class="pending clean" id="pendingPanel">
+    <h3>Pending changes — not yet deployed</h3>
+    <p>To apply for all visitors, replace <b>changes.json</b> in the repo root with the JSON below, then commit &amp; push. Or ask Claude to do it.</p>
+    <pre id="pendingJson"></pre>
+    <div class="pending-actions">
+      <button class="btn" id="copyJson">Copy JSON</button>
+      <button class="btn secondary" id="downloadJson">Download changes.json</button>
+    </div>
+  </div>
+
   <footer>
     KetoFlow — internal change control. <a href="index.html">Back to site</a>
   </footer>
@@ -151,22 +193,50 @@
   // The same `id` must be used on the target page via data-change-id.
   // ============================================================
   var CHANGES = [
-    { id: 'remove-press-bar', description: 'Remove "As Featured In" scrolling press logo bar', page: 'desktop.html', defaultOn: false },
-    { id: 'remove-wedding-story', description: 'Remove "Real Success Story Before The Wedding" video section', page: 'desktop.html', defaultOn: false },
+    { id: 'remove-press-bar', description: 'Remove "As Featured In" scrolling press logo bar', page: 'desktop.html' },
+    { id: 'remove-wedding-story', description: 'Remove "Real Success Story Before The Wedding" video section', page: 'desktop.html' },
   ];
+
+  var deployed = {};   // Last-fetched state from changes.json
+  var staged = {};     // In-memory working copy shown in toggles
 
   var body = document.getElementById('changesBody');
   var statTotal = document.getElementById('statTotal');
   var statOn = document.getElementById('statOn');
   var statOff = document.getElementById('statOff');
+  var banner = document.getElementById('statusBanner');
+  var pendingPanel = document.getElementById('pendingPanel');
+  var pendingJsonEl = document.getElementById('pendingJson');
+
+  function buildFullState(source) {
+    var out = {};
+    CHANGES.forEach(function (c) { out[c.id] = !!source[c.id]; });
+    return out;
+  }
+
+  function isDirty() {
+    for (var i = 0; i < CHANGES.length; i++) {
+      var id = CHANGES[i].id;
+      if (!!staged[id] !== !!deployed[id]) return true;
+    }
+    return false;
+  }
+
+  function updatePendingPanel() {
+    if (isDirty()) {
+      var full = buildFullState(staged);
+      pendingJsonEl.textContent = JSON.stringify(full, null, 2);
+      pendingPanel.classList.remove('clean');
+    } else {
+      pendingPanel.classList.add('clean');
+    }
+  }
 
   function render() {
-    var state = KetoflowChanges.get();
     body.innerHTML = '';
-
     if (!CHANGES.length) {
       body.innerHTML = '<tr><td colspan="5" class="empty">' +
-        'No changes registered yet. Add entries to the <code>CHANGES</code> array in <code>changes.html</code>.' +
+        'No changes registered. Add entries to the <code>CHANGES</code> array in <code>changes.html</code>.' +
         '</td></tr>';
       statTotal.textContent = '0';
       statOn.textContent = '0';
@@ -176,16 +246,18 @@
 
     var on = 0;
     CHANGES.forEach(function (c) {
-      var checked = (c.id in state) ? state[c.id] : !!c.defaultOn;
+      var checked = !!staged[c.id];
+      var dirty = checked !== !!deployed[c.id];
       if (checked) on++;
 
       var tr = document.createElement('tr');
+      if (dirty) tr.className = 'dirty';
       tr.innerHTML =
         '<td class="id">' + c.id + '</td>' +
         '<td class="desc">' + c.description + '</td>' +
         '<td><span class="page-tag">' + c.page + '</span></td>' +
         '<td><span class="status ' + (checked ? 'on' : 'off') + '" data-status="' + c.id + '">' +
-          (checked ? 'Active' : 'Reverted') + '</span></td>' +
+          (checked ? 'Active' : 'Reverted') + (dirty ? ' (staged)' : '') + '</span></td>' +
         '<td>' +
           '<label class="switch">' +
             '<input type="checkbox" data-toggle="' + c.id + '"' + (checked ? ' checked' : '') + '>' +
@@ -198,40 +270,85 @@
     statTotal.textContent = CHANGES.length;
     statOn.textContent = on;
     statOff.textContent = CHANGES.length - on;
+    updatePendingPanel();
+  }
+
+  function setBanner(text, tone) {
+    banner.innerHTML = text;
+    banner.style.background = tone === 'err' ? '#fef2f2' : '#eef2ff';
+    banner.style.borderColor = tone === 'err' ? '#fecaca' : '#c7d2fe';
+    banner.style.color = tone === 'err' ? '#991b1b' : '#3730a3';
+  }
+
+  function loadDeployed() {
+    return fetch('changes.json?v=' + Date.now(), { cache: 'no-store' })
+      .then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .then(function (json) {
+        deployed = json || {};
+        staged = buildFullState(deployed);
+        setBanner('Deployed state loaded from <b>changes.json</b>. Flip a toggle to stage changes.');
+        render();
+      })
+      .catch(function (e) {
+        deployed = {};
+        staged = buildFullState({});
+        setBanner('Could not load <b>changes.json</b> (' + e.message + '). Showing defaults — all reverted.', 'err');
+        render();
+      });
   }
 
   body.addEventListener('change', function (e) {
     var input = e.target.closest('input[data-toggle]');
     if (!input) return;
     var id = input.getAttribute('data-toggle');
-    KetoflowChanges.set(id, input.checked);
-    var label = document.querySelector('[data-status="' + id + '"]');
-    if (label) {
-      label.textContent = input.checked ? 'Active' : 'Reverted';
-      label.className = 'status ' + (input.checked ? 'on' : 'off');
-    }
-    var state = KetoflowChanges.get();
-    var on = CHANGES.reduce(function (n, c) { return n + (state[c.id] ? 1 : 0); }, 0);
-    statOn.textContent = on;
-    statOff.textContent = CHANGES.length - on;
+    staged[id] = input.checked;
+    render();
   });
 
   document.getElementById('enableAll').addEventListener('click', function () {
-    CHANGES.forEach(function (c) { KetoflowChanges.set(c.id, true); });
+    CHANGES.forEach(function (c) { staged[c.id] = true; });
     render();
   });
   document.getElementById('disableAll').addEventListener('click', function () {
-    CHANGES.forEach(function (c) { KetoflowChanges.set(c.id, false); });
+    CHANGES.forEach(function (c) { staged[c.id] = false; });
     render();
   });
-  document.getElementById('resetAll').addEventListener('click', function () {
-    if (confirm('Reset all toggles to their defaults?')) {
-      KetoflowChanges.reset();
-      render();
+  document.getElementById('revertStaged').addEventListener('click', function () {
+    staged = buildFullState(deployed);
+    render();
+  });
+
+  document.getElementById('copyJson').addEventListener('click', function () {
+    var text = pendingJsonEl.textContent;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () {
+        var btn = document.getElementById('copyJson');
+        var old = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(function () { btn.textContent = old; }, 1500);
+      });
+    } else {
+      var ta = document.createElement('textarea');
+      ta.value = text; document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); } catch (_) {}
+      document.body.removeChild(ta);
     }
   });
 
-  render();
+  document.getElementById('downloadJson').addEventListener('click', function () {
+    var blob = new Blob([pendingJsonEl.textContent + '\n'], { type: 'application/json' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url; a.download = 'changes.json';
+    document.body.appendChild(a); a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+
+  loadDeployed();
 </script>
 </body>
 </html>

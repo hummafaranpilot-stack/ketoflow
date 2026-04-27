@@ -27,6 +27,9 @@
 .kw-witty-list{animation:kw-witty-scroll 11s ease-in-out infinite}
 .kw-witty-item{height:48px;display:flex;align-items:center;justify-content:center;gap:8px;color:#e5e7eb;font-family:'Amariya','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;font-weight:400;font-size:19px;line-height:1;letter-spacing:0;white-space:nowrap;text-shadow:0 1px 2px rgba(0,0,0,.4)}
 .kw-witty-icon{width:24px;height:24px;flex-shrink:0;color:#A4F13A}
+/* ── Skeleton load progress bar ── */
+#kw-sk-progress{position:fixed;top:0;left:0;right:0;height:3px;background:rgba(255,255,255,0.06);z-index:10002;overflow:hidden}
+#kw-sk-progress-fill{height:100%;width:0;background:linear-gradient(90deg,#7ed321,#A4F13A);transition:width .35s ease;box-shadow:0 0 8px rgba(164,241,58,.5)}
 @keyframes kw-witty-scroll{
   0%,12%    {transform:translateY(0)}
   16%,29%   {transform:translateY(-48px)}
@@ -3310,6 +3313,8 @@ html, body { overflow-x: hidden; scroll-behavior: smooth; }
 
 <!-- ── Skeleton Loader ── -->
 <div id="kw-sk" aria-hidden="true" role="presentation">
+  <!-- Top progress bar -->
+  <div id="kw-sk-progress" aria-hidden="true"><div id="kw-sk-progress-fill"></div></div>
   <!-- Reusable tick icon (matches site's guarantee badge) -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
     <symbol id="kw-witty-tick" viewBox="0 0 30 31">
@@ -6383,16 +6388,28 @@ function localVideoPlay(overlay){
 (function(){
   var sk=document.getElementById('kw-sk');
   if(!sk)return;
+  var fill=document.getElementById('kw-sk-progress-fill');
   var done=false;
+  var loaded=0, needed=5;
+  var startTime=Date.now();
+  var crawlTimer=null;
+  function setW(p){if(fill)fill.style.width=Math.min(p,100)+'%'}
+  function update(){
+    var imgPct=(loaded/needed)*100;
+    var timePct=Math.min((Date.now()-startTime)/4000*90,90);
+    setW(Math.max(imgPct,timePct));
+  }
   function dismiss(){
     if(done)return; done=true;
+    if(crawlTimer)clearInterval(crawlTimer);
+    setW(100);
     sk.classList.add('kw-sk-out');
     setTimeout(function(){if(sk.parentNode)sk.parentNode.removeChild(sk);},500);
     /* Start sequential image loader after skeleton fade */
     setTimeout(loadDeferred,100);
   }
-  var loaded=0, needed=5;
-  function tick(){if(++loaded>=needed)dismiss();}
+  function tick(){loaded++;update();if(loaded>=needed)dismiss();}
+  crawlTimer=setInterval(update,80);
   /* Track: hero bg, logo, first video poster, exit popup, notification jar */
   var a=new Image(); a.onload=a.onerror=tick; a.src='product_images/hero-bg-mobile.webp?v=20260417c';
   var b=new Image(); b.onload=b.onerror=tick; b.src='logo.webp?v=20260417';

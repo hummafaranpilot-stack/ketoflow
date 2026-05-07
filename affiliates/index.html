@@ -5,9 +5,10 @@
         <meta charset="utf-8">
         <title>KetoFlow™ Affiliate Program — Trusted Nutra Products</title>
         <meta name="description" content="Join the KetoFlow™ Affiliate Program and earn commissions promoting a science-backed keto hydration supplement. Zero sugar, zero crash — high conversions, top-tier support.">
-        <link rel="icon" type="image/png" href="../favicon.png">     
+        <link rel="icon" type="image/png" href="../favicon.png">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
+        <link rel="preload" as="image" href="images/banner-product.webp" fetchpriority="high">
+        <link rel="preload" as="image" href="images/banner-bg.webp">
         <link rel="stylesheet" type="text/css" href="css/style.css?v=3">
         <style>
 /* === Amariya font for guarantee bar === */
@@ -28,6 +29,15 @@
 @keyframes kw-skshimmer{0%{background-position:100% 0}100%{background-position:-100% 0}}
 /* ── Minimalistic image shimmer (non-gallery images) ── */
 .kw-img-ld{background:linear-gradient(90deg,#1a1a1a 25%,#2e2e2e 50%,#1a1a1a 75%);background-size:400% 100%;animation:kw-skshimmer 1.5s ease-in-out infinite;border-radius:4px}
+/* ── Image grid: See More collapse pattern ── */
+.image_grid_wrap{position:relative}
+.image_grid_wrap.is-collapsed .image_grid{-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 75%,transparent 100%);mask-image:linear-gradient(to bottom,#000 0%,#000 75%,transparent 100%)}
+#kw-img-panel-1 .image_grid_wrap.is-collapsed .image_item:nth-child(n+13),
+#kw-img-panel-2 .image_grid_wrap.is-collapsed .image_item:nth-child(n+13){display:none}
+.see-more-btn{display:block;margin:30px auto 0;padding:14px 38px;background:#A4F13A;color:#001C38;border:none;border-radius:8px;font-weight:800;font-size:14px;cursor:pointer;letter-spacing:.6px;text-transform:uppercase;font-family:'Inter',sans-serif;transition:transform .15s ease,box-shadow .15s ease,background .15s ease;box-shadow:0 4px 16px rgba(164,241,58,0.28)}
+.see-more-btn:hover{transform:translateY(-2px);background:#B6F858;box-shadow:0 8px 24px rgba(164,241,58,0.45)}
+.see-more-btn:active{transform:translateY(0)}
+@media(max-width:768px){.see-more-btn{padding:12px 28px;font-size:13px}}
         </style>
         <style type="text/css">
             .kw-spanel{display:none}.kw-spanel-active{display:block!important}
@@ -904,6 +914,33 @@
                     if(target) target.classList.add('kw-img-panel-active');
                 });
             });
+
+            // See More setup for Tab 1 (Product Images) + Tab 2 (Ready to use Graphics)
+            // Pure CSS hides items beyond visibleItemCount; mask gradient fades bottom for peek
+            function setupLoadMore(panelId, visibleItemCount) {
+                if (panelId !== 'kw-img-panel-1' && panelId !== 'kw-img-panel-2') return;
+                var panel = document.getElementById(panelId);
+                if (!panel) return;
+                var grid = panel.querySelector('.image_grid');
+                if (!grid) return;
+                var items = grid.querySelectorAll('.image_item');
+                if (items.length <= visibleItemCount) return;
+                if (grid.parentNode.classList.contains('image_grid_wrap')) return;
+                var wrap = document.createElement('div');
+                wrap.className = 'image_grid_wrap is-collapsed';
+                grid.parentNode.insertBefore(wrap, grid);
+                wrap.appendChild(grid);
+                var btn = document.createElement('button');
+                btn.className = 'see-more-btn';
+                btn.textContent = 'See More';
+                btn.addEventListener('click', function(){
+                    wrap.classList.remove('is-collapsed');
+                    btn.style.display = 'none';
+                });
+                wrap.appendChild(btn);
+            }
+            setupLoadMore('kw-img-panel-1', 12);
+            setupLoadMore('kw-img-panel-2', 12);
 
             // GIF Gallery tabs
             var gifTabs   = document.querySelectorAll('.kw-gif-tab');
@@ -1784,20 +1821,25 @@
     <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"6d990e46786c4fd0bd6c112974965458","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 
 <script>
-/* ── Skeleton dismiss ── */
+/* ── Skeleton dismiss (waits for hero bg + product image) ── */
 (function(){
   var sk=document.getElementById('kw-sk');
   if(!sk)return;
   var done=false;
+  var loaded=0, needed=2;
   function dismiss(){
     if(done)return; done=true;
     sk.classList.add('kw-sk-out');
     setTimeout(function(){if(sk.parentNode)sk.parentNode.removeChild(sk);},500);
+    /* Signal: notification + exit popup wait for this */
+    window.__skDismissed=true;
+    try{document.dispatchEvent(new Event('kw:sk-dismissed'));}catch(e){}
   }
-  var img=new Image();
-  img.onload=img.onerror=dismiss;
-  img.src='images/banner-bg.webp';
-  setTimeout(dismiss,3500);
+  function tick(){loaded++; if(loaded>=needed)dismiss();}
+  var a=new Image(); a.onload=a.onerror=tick; a.src='images/banner-bg.webp';
+  var b=new Image(); b.onload=b.onerror=tick; b.src='images/banner-product.webp';
+  /* Hard fallback: 4s max */
+  setTimeout(dismiss,4000);
 })();
 </script>
 

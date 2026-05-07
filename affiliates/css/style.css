@@ -1838,33 +1838,6 @@ ul.nature_form_list li p{font-size:16px; line-height:22px;}
 .kw-img-panel { display: none; }
 .kw-img-panel-active { display: block; }
 
-/* Image loader overlay */
-.kw-img-wrap { position: relative; overflow: hidden; background: #f0f0f0; }
-.kw-img-wrap img { display: block; width: 100%; transition: opacity .3s; }
-.kw-img-wrap img.loading { opacity: 0; }
-.kw-img-loader {
-    position: absolute; inset: 0;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    background: #f0f0f0;
-    z-index: 2;
-    transition: opacity .3s;
-}
-.kw-img-loader.done { opacity: 0; pointer-events: none; }
-.kw-loader-bar-wrap {
-    width: 70%; height: 4px;
-    background: #ddd; border-radius: 4px; overflow: hidden; margin-bottom: 6px;
-}
-.kw-loader-bar {
-    height: 100%; width: 0%;
-    background: #2B9000; border-radius: 4px;
-    transition: width .1s linear;
-}
-.kw-loader-pct {
-    font-size: 12px; font-weight: 700;
-    color: #2B9000; font-family: 'Inter', sans-serif;
-}
-
 /* ============================================================
    Email Swipe Section
    ============================================================ */

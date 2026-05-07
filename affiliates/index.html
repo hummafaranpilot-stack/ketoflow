@@ -27,8 +27,6 @@
 #kw-sk.kw-sk-out{opacity:0;pointer-events:none}
 .kw-sk-s{background:linear-gradient(90deg,#122008 25%,#1e3a10 50%,#122008 75%);background-size:400% 100%;animation:kw-skshimmer 1.5s ease-in-out infinite;border-radius:6px}
 @keyframes kw-skshimmer{0%{background-position:100% 0}100%{background-position:-100% 0}}
-/* ── Minimalistic image shimmer (non-gallery images) ── */
-.kw-img-ld{background:linear-gradient(90deg,#1a1a1a 25%,#2e2e2e 50%,#1a1a1a 75%);background-size:400% 100%;animation:kw-skshimmer 1.5s ease-in-out infinite;border-radius:4px}
 /* ── Image grid: See More collapse pattern ── */
 .image_grid_wrap{position:relative}
 .image_grid_wrap.is-collapsed .image_grid{-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 75%,transparent 100%);mask-image:linear-gradient(to bottom,#000 0%,#000 75%,transparent 100%)}
@@ -991,66 +989,6 @@
             // Close on backdrop click
             document.getElementById('gif-lightbox').addEventListener('click', function(e){
                 if(e.target === this) closeGifPopup();
-            });
-
-            // Minimalistic shimmer loader for all content images
-            (function(){
-                document.querySelectorAll('img').forEach(function(img){
-                    if(img.closest('.image_item')) return; // already has progress-bar loader
-                    if(img.closest('#kw-cb-badge')) return; // static BuyGoods badge
-                    if(img.id === 'kw-proof-lb-img') return; // lightbox placeholder
-                    if(img.complete && img.naturalWidth > 0) return; // already loaded
-                    img.classList.add('kw-img-ld');
-                    var done = function(){ img.classList.remove('kw-img-ld'); };
-                    img.addEventListener('load', done, {once:true});
-                    img.addEventListener('error', done, {once:true});
-                });
-            })();
-
-            // Percentage loader for each image_item
-            document.querySelectorAll('.image_item').forEach(function(item){
-                var a = item.querySelector('a');
-                var img = item.querySelector('img');
-                if(!img) return;
-
-                // Wrap contents
-                var wrap = document.createElement('div');
-                wrap.className = 'kw-img-wrap';
-
-                // Loader overlay
-                var loader = document.createElement('div');
-                loader.className = 'kw-img-loader';
-                loader.innerHTML = '<div class="kw-loader-bar-wrap"><div class="kw-loader-bar"></div></div><span class="kw-loader-pct">0%</span>';
-
-                a.parentNode.insertBefore(wrap, a);
-                wrap.appendChild(a);
-                wrap.appendChild(loader);
-                img.classList.add('loading');
-
-                var bar = loader.querySelector('.kw-loader-bar');
-                var pct = loader.querySelector('.kw-loader-pct');
-                var progress = 0;
-                var interval = setInterval(function(){
-                    progress += Math.random() * 18;
-                    if(progress > 90) progress = 90;
-                    bar.style.width = progress + '%';
-                    pct.textContent = Math.round(progress) + '%';
-                }, 120);
-
-                function onLoaded(){
-                    clearInterval(interval);
-                    bar.style.width = '100%';
-                    pct.textContent = '100%';
-                    img.classList.remove('loading');
-                    setTimeout(function(){ loader.classList.add('done'); }, 250);
-                }
-
-                if(img.complete && img.naturalWidth > 0){
-                    onLoaded();
-                } else {
-                    img.addEventListener('load', onLoaded);
-                    img.addEventListener('error', onLoaded);
-                }
             });
 
         });
